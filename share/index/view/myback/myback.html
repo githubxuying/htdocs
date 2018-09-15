@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>明德幼儿园积分管理系统-我的审核记录</title>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/tuo.js"></script>
+    <link href="/static/kindergarten/css/tuo.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/jquery-1.4.2.min.js"></script>
+</head>
+
+<body>
+    <div id="overlay"></div>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+    <!-- pc端头部 begin -->
+    <div class="header_pc">
+        <div class="hdIn">
+            <div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+            <div class="hdright">
+                <ul>
+                    <li class="home"><a href="{:url('index/Right/right')}" target='right'>首页</a></li>
+                    <li class="home">欢迎您！河北省唐山市丰润区悦城明德幼儿园 {$Request.session.name}</li>
+                    <li><a href="{:url('index/Touppwd/touppwd')}" target='right'>修改密码</a></li>
+                    <li><a href="{:url('index/Right/logout')}" target='right'>退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- pc端头部 end -->
+
+
+    <!-- 移动端头部 begin -->
+    <div class="header_yidong">
+        <a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+        <a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+    </div>
+    <!-- 移动端头部 end -->
+    <div class="list">
+        <div class="listBtn">
+            <h4 class="home">驳回记录</h4>
+            <a href="javascript:history.go(-1);" class="add home">返回</a>
+            <a href="./?c=integral&a=myBack&man=bleader" class="add home" id="bleader">其他驳回</a>
+            <a href="./?c=integral&a=myBack&man=bmy" class="add home" id="bmy">我的驳回</a>
+            <a href="./?c=integral&a=myBack" class="add home" id="ball">全部驳回</a>
+        </div>
+        <div class="listTab">
+            <table id="tab" width="200" border="0" cellspacing="0" cellpadding="0">
+                <tr class="tr01" align="center">
+                    <td>编号</td>
+                    <td>申请人</td>
+                    <td>被申请人</td>
+                    <td>申请项</td>
+                    <td>描述</td>
+                    <td>驳回人</td>
+                    <td>驳回说明</td>
+                    <td>驳回时间</td>
+                    <td>操作</td>
+                </tr>
+                {volist name="myback" id="list" }
+                <tr id="tr{$list.id}">
+                    <td align="center">{$temp++}</td>
+                    <td>{$list.app_user}</td>
+                    <td>{$list.be_app_user}</td>
+                    <td>{$list.app_item}</td>
+                    <td>{$list.description}</td>
+                    <td>{$list.reject_user}</td>
+                    <td>{$list.reject_explain}</td>
+                    <td>{$list.reject_time}</td>
+                    <td>
+                        <a href="javascript:cancel({$list.id},'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                {/volist}
+                <tr id="tr53177">
+                    <td align="center">2</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>每周按时完成本岗工作任务（由上级统一加分</td>
+                    <td>本周按时按点完成工作任务无延误</td>
+                    <td>李晶</td>
+                    <td>亲，注意申请项为每周的时间节点哦</td>
+                    <td>2017-05-22 20:53</td>
+                    <td>
+                        <a href="javascript:cancel(53177,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53176">
+                    <td align="center">3</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>各项检查评比工作符合工作要求（如卫生评比</td>
+                    <td>本周卫生检查符合幼儿园工作要求</td>
+
+                    <td>李晶</td>
+                    <td>亲，注意时间节点哦！</td>
+
+                    <td>2017-05-22 20:52</td>
+                    <td>
+                        <a href="javascript:cancel(53176,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53175">
+                    <td align="center">4</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>每周本岗位管辖范围内硬件设施摆放符合园所</td>
+                    <td>本周硬件设施摆放严格执行幼儿园标准</td>
+
+                    <td>李晶</td>
+                    <td>亲，申请项为每周在周五周六周日三天内申请哦！</td>
+
+                    <td>2017-05-22 20:52</td>
+                    <td>
+                        <a href="javascript:cancel(53175,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53174">
+                    <td align="center">5</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>每周本岗位管辖范围内物品干净清洁、无污渍</td>
+                    <td>本周岗位物品清洁无污渍与垃圾</td>
+
+                    <td>李晶</td>
+                    <td>亲，注意时间节点哦！</td>
+
+                    <td>2017-05-22 20:49</td>
+                    <td>
+                        <a href="javascript:cancel(53174,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53173">
+                    <td align="center">6</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>本周按时完成消毒工作</td>
+
+                    <td>李晶</td>
+                    <td>亲注意时间节点哦</td>
+
+                    <td>2017-05-22 20:49</td>
+                    <td>
+                        <a href="javascript:cancel(53173,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53172">
+                    <td align="center">7</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>本周按时按质在各个范围内进行卫生消毒工作保证幼儿生活环境</td>
+
+                    <td>李晶</td>
+                    <td>亲，注意时间节点哦</td>
+
+                    <td>2017-05-22 20:48</td>
+                    <td>
+                        <a href="javascript:cancel(53172,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53171">
+                    <td align="center">8</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>每周本岗位管辖范围内的地面保持清洁、干爽</td>
+                    <td>本周地面清洁无垃圾</td>
+
+                    <td>李晶</td>
+                    <td>亲，注意时间节点哦</td>
+
+                    <td>2017-05-22 20:48</td>
+                    <td>
+                        <a href="javascript:cancel(53171,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53170">
+                    <td align="center">9</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>本岗位各项文本记录清晰、内容完整、无破损</td>
+                    <td>本周各项记录清晰内容完整没有损坏</td>
+
+                    <td>李晶</td>
+                    <td>亲，注意时间节点哦！</td>
+
+                    <td>2017-05-22 20:47</td>
+                    <td>
+                        <a href="javascript:cancel(53170,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53169">
+                    <td align="center">10</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>每周按时提交各类文案</td>
+                    <td>5月19日晚上离园之前积极将教案交到李主任办公室</td>
+
+                    <td>李晶</td>
+                    <td>亲，注意时间节点哦</td>
+
+                    <td>2017-05-22 20:47</td>
+                    <td>
+                        <a href="javascript:cancel(53169,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53168">
+                    <td align="center">11</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>每周按时按质开展户外活动</td>
+                    <td>本周按时按质开展户外活动户外排练六一节目</td>
+
+                    <td>李晶</td>
+                    <td>亲，注意时间节点哦，申请项为每周在周五周六周日三天内申请哦！</td>
+
+                    <td>2017-05-22 20:47</td>
+                    <td>
+                        <a href="javascript:cancel(53168,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53167">
+                    <td align="center">12</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>每月本岗位管辖范围内硬件设施无丢失</td>
+                    <td>本周岗位硬件设施不曾丢失</td>
+
+                    <td>李晶</td>
+                    <td>亲，申请项为每月到月底再申请吧</td>
+
+                    <td>2017-05-22 20:46</td>
+                    <td>
+                        <a href="javascript:cancel(53167,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53166">
+                    <td align="center">13</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>每月班组成员配合默契，无矛盾现象发生</td>
+                    <td>本周班里教师成员配合默契无矛盾现象发生</td>
+
+                    <td>李晶</td>
+                    <td>亲，申请项为每月到月底再申请吧</td>
+
+                    <td>2017-05-22 20:45</td>
+                    <td>
+                        <a href="javascript:cancel(53166,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53164">
+                    <td align="center">14</td>
+                    <td>张婷婷</td>
+                    <td>张婷婷</td>
+                    <td>每周按时按质完成工作计划</td>
+                    <td>按时完成工作计划</td>
+
+                    <td>王秀红</td>
+                    <td>亲，已过时间节点！</td>
+
+                    <td>2017-05-22 20:43</td>
+                    <td>
+                        <a href="javascript:cancel(53164,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53163">
+                    <td align="center">15</td>
+                    <td>张婷婷</td>
+                    <td>张婷婷</td>
+                    <td>每周按时提交各类文案</td>
+                    <td>按时上交文件</td>
+
+                    <td>王秀红</td>
+                    <td>亲，已过时间节点！</td>
+
+                    <td>2017-05-22 20:42</td>
+                    <td>
+                        <a href="javascript:cancel(53163,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53162">
+                    <td align="center">16</td>
+                    <td>张婷婷</td>
+                    <td>张婷婷</td>
+                    <td>本岗位各项文本记录清晰、内容完整、无破损</td>
+                    <td>文本记录清晰，无破损</td>
+
+                    <td>王秀红</td>
+                    <td>亲，已过时间节点！</td>
+
+                    <td>2017-05-22 20:42</td>
+                    <td>
+                        <a href="javascript:cancel(53162,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53161">
+                    <td align="center">17</td>
+                    <td>张婷婷</td>
+                    <td>张婷婷</td>
+                    <td>每周本岗位管辖范围内物品干净清洁、无污渍</td>
+                    <td>上周物品干净清洁无垃圾</td>
+
+                    <td>王秀红</td>
+                    <td>亲，已过时间节点！</td>
+
+                    <td>2017-05-22 20:42</td>
+                    <td>
+                        <a href="javascript:cancel(53161,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53160">
+                    <td align="center">18</td>
+                    <td>张婷婷</td>
+                    <td>张婷婷</td>
+                    <td>每周本岗位管辖范围内硬件设施摆放符合园所</td>
+                    <td>本周硬件摆放符合标准</td>
+
+                    <td>王秀红</td>
+                    <td>亲，已过时间节点！</td>
+
+                    <td>2017-05-22 20:41</td>
+                    <td>
+                        <a href="javascript:cancel(53160,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr53159">
+                    <td align="center">19</td>
+                    <td>张婷婷</td>
+                    <td>张婷婷</td>
+                    <td>每周按时按质开展户外活动</td>
+                    <td>按时开展户外活动</td>
+
+                    <td>王秀红</td>
+                    <td>亲，已过时间节点。</td>
+
+                    <td>2017-05-22 20:39</td>
+                    <td>
+                        <a href="javascript:cancel(53159,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr52969">
+                    <td align="center">20</td>
+                    <td>王鑫玥</td>
+                    <td>王鑫玥</td>
+                    <td>按时按质完成园所大型活动</td>
+                    <td>本周按时按质完成六一中班亲子团体器械操排练</td>
+
+                    <td>李晶</td>
+                    <td>亲，申请项应为按时按制完成计划哦</td>
+
+                    <td>2017-05-21 20:19</td>
+                    <td>
+                        <a href="javascript:cancel(52969,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr52968">
+                    <td align="center">21</td>
+                    <td>王鑫玥</td>
+                    <td>王鑫玥</td>
+                    <td>每月本岗位管辖范围内硬件设施无丢失</td>
+                    <td>本周本岗位管辖范围内硬件设施无丢失</td>
+
+                    <td>李晶</td>
+                    <td>亲，申请项为每月的到月底再申请哦</td>
+
+                    <td>2017-05-21 20:18</td>
+                    <td>
+                        <a href="javascript:cancel(52968,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr52967">
+                    <td align="center">22</td>
+                    <td>王鑫玥</td>
+                    <td>王鑫玥</td>
+                    <td>每月无体罚或变相体罚幼儿的行为</td>
+                    <td>本周无体罚或变相体罚幼儿的行为</td>
+
+                    <td>李晶</td>
+                    <td>亲，申请项为每月的到月底再申请吧</td>
+
+                    <td>2017-05-21 20:17</td>
+                    <td>
+                        <a href="javascript:cancel(52967,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr52966">
+                    <td align="center">23</td>
+                    <td>王鑫玥</td>
+                    <td>王鑫玥</td>
+                    <td>每月无违反园所规章制度的行为</td>
+                    <td>本周无违反园所规章制度的行为</td>
+
+                    <td>李晶</td>
+                    <td>亲，申请项为每月哦！</td>
+
+                    <td>2017-05-21 20:17</td>
+                    <td>
+                        <a href="javascript:cancel(52966,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr52965">
+                    <td align="center">24</td>
+                    <td>王鑫玥</td>
+                    <td>王鑫玥</td>
+                    <td>每月本岗位管辖范围内无卫生死角</td>
+                    <td>本周本岗位管辖范围内无卫生死角</td>
+
+                    <td>李晶</td>
+                    <td>亲，申请项为每月到月底再申请吧</td>
+
+                    <td>2017-05-21 20:17</td>
+                    <td>
+                        <a href="javascript:cancel(52965,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr52964">
+                    <td align="center">25</td>
+                    <td>王鑫玥</td>
+                    <td>王鑫玥</td>
+                    <td>每月本岗位管辖范围内硬件设施无损坏</td>
+                    <td>本周本岗位管辖范围内硬件设施无损坏</td>
+
+                    <td>李晶</td>
+                    <td>亲，申请项为每月哦！</td>
+
+                    <td>2017-05-21 20:14</td>
+                    <td>
+                        <a href="javascript:cancel(52964,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr52963">
+                    <td align="center">26</td>
+                    <td>王鑫玥</td>
+                    <td>王鑫玥</td>
+                    <td>每学期班级无安全事故</td>
+                    <td>本周班级无安全事故发生</td>
+
+                    <td>李晶</td>
+                    <td>亲，本项等学期末再申请吧</td>
+
+                    <td>2017-05-21 20:13</td>
+                    <td>
+                        <a href="javascript:cancel(52963,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr52285">
+                    <td align="center">27</td>
+                    <td>赵莉</td>
+                    <td>赵莉</td>
+                    <td>积极参加继续教育类培训</td>
+                    <td>5月16号，中午因其他老师去排练六一节目，本人积极配合领导安排，协助大一班看午睡。</td>
+
+                    <td>王秀红</td>
+                    <td>亲，申请互帮互助哦！</td>
+
+                    <td>2017-05-16 21:28</td>
+                    <td>
+                        <a href="javascript:cancel(52285,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr52059">
+                    <td align="center">28</td>
+                    <td>章健</td>
+                    <td>章健</td>
+                    <td>承担观摩活动</td>
+                    <td>5月13日承担亲子活动蛋壳蜡烛课程</td>
+
+                    <td>李晶</td>
+                    <td>亲，请勿重复申请哦！</td>
+
+                    <td>2017-05-15 22:38</td>
+                    <td>
+                        <a href="javascript:cancel(52059,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr52058">
+                    <td align="center">29</td>
+                    <td>杨蕊</td>
+                    <td>杨蕊</td>
+                    <td>积极参与园内活动分享</td>
+                    <td>5月13日周六积极参与园内亲子活动</td>
+
+                    <td>李晶</td>
+                    <td>亲，奖分直接下达喽！</td>
+
+                    <td>2017-05-15 22:38</td>
+                    <td>
+                        <a href="javascript:cancel(52058,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr52057">
+                    <td align="center">30</td>
+                    <td>章健</td>
+                    <td>章健</td>
+                    <td>各项检查评比工作符合工作要求（如卫生评比</td>
+                    <td>卫生检查工作符合要求</td>
+
+                    <td>李晶</td>
+                    <td>亲，本项月底申请吧！</td>
+
+                    <td>2017-05-15 22:37</td>
+                    <td>
+                        <a href="javascript:cancel(52057,'bo')" onclick="return myConfirm1()">取消</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="9" align="center">总数：321&nbsp;&nbsp;&nbsp页数：1/11&nbsp;&nbsp;&nbsp;&nbsp;首页&nbsp;上一页&nbsp;&nbsp;1&nbsp;<a href="?c=integral&a=myBack&page=2">[2]</a>
+                        <a
+                            href="?c=integral&a=myBack&page=3">[3]</a><a href="?c=integral&a=myBack&page=4">[4]</a><a href="?c=integral&a=myBack&page=5">[5]</a>
+                            <a
+                                href="?c=integral&a=myBack&page=6">[6]</a><a href="?c=integral&a=myBack&page=7">[7]</a><a href="?c=integral&a=myBack&page=8">[8]</a>
+                                <a
+                                    href="?c=integral&a=myBack&page=9">[9]</a><a href="?c=integral&a=myBack&page=10">[10]</a>&nbsp;<a href="?c=integral&a=myBack&page=2">下一页</a>&nbsp;
+                                    <a
+                                        href="?c=integral&a=myBack&page=11">尾页</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+
+    <!--手机版的底部 begin-->
+    <div class="web">
+        <div class="webIn">
+            <ul>
+                <li>
+                    <a href="{:url('index/Right/right')}">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Ranking/ranking')}">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userlist/userlist')}">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Right/logout')}">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--手机版的底部 end-->
+
+    <!-- 版权 -->
+    <div id="bb" style="text-align:center;">
+        ©1guanli.com 版权所有 京ICP备13049583号-6
+    </div>
+
+    <!--cnzz统计代码-->
+    <div style="display:none">
+        <script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+    </div>
+    <!--cnzz统计代码-->
+
+    <!--禁止查看源代码-->
+    <script>
+        document.oncontextmenu = new Function("return false");
+        //document.onselectstart=new Function("return false"); 
+        event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!--
+//平台、设备和操作系统
+var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll) {
+
+        } else {
+            var oldHeight = document.body.scrollHeight;
+            $(window).resize(function () {
+                var newHeight = document.body.scrollHeight;
+                if (oldHeight < 600 && newHeight < 600) {
+                    if (oldHeight == newHeight) {
+                        $('.web').show();
+                    }
+                    else {
+                        $('.web').hide();
+                    }
+                }
+            });
+        }
+        -->
+
+    </script>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    var man = "";
+    if (man != '') {
+        $('#' + man).addClass('current');
+    }
+    else {
+        $('#all').addClass('current');
+        $('#ball').addClass('current');
+    }
+    //取消操作
+    function cancel(id, type) {
+        var geturl = type == 'shen' ? './?c=integral&a=cancelcheck&id=' + id : './?c=integral&a=cancelback&id=' + id
+        $.ajax({
+            type: 'GET',
+            url: geturl,
+            success: function (msg) {
+                if (msg == 'yes') {
+                    $('#tr' + id).remove();
+                }
+                else {
+                    alert(msg);
+                    $('#tr' + id).remove();
+                }
+            }
+        });
+    }
+
+    function myConfirm1() {
+        var tmp = window.confirm("确定要执行此项操作吗？");
+        if (tmp) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    //验证搜索
+    function checkform() {
+        var sname = $('#sname').val();
+        if (sname == '') {
+            return false;
+        }
+        else {
+            var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
+            if (!reg.test(sname) || sname.length > 5 || sname.length < 2) {
+                alert("请输入2-5位中文姓名");
+                return false;
+            }
+            else {
+                window.location.href = "./?c=integral&a=myVerify&sname=" + sname;
+            }
+        }
+    }
+
+</script>

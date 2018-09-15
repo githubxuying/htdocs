@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>明德幼儿园积分管理系统-团队排名</title>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/echarts.min.js"></script>
+    <style type="text/css">
+        .tudiv {
+            width: 1000px;
+        }
+
+        .tuandui_body_paiming .listTab td {
+            width: 12.8%;
+            visibility: hidden;
+            border: 0;
+        }
+
+        .tuandui_body_paiming .listTab table {
+            width: 780px;
+            margin: 0 auto;
+            border: 0;
+            margin-bottom: -70px;
+        }
+
+        .tuandui_body_paiming .listTab td img {
+            width: 58px;
+            margin: 0 auto;
+            display: block;
+        }
+    </style>
+</head>
+
+<body class="tuandui_body_paiming">
+
+
+    <div id="overlay"></div>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+    <!-- pc端头部 begin -->
+    <div class="header_pc">
+        <div class="hdIn">
+            <div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+            <div class="hdright">
+                <ul>
+                    <li class="home"><a href="{:url('index/Right/right')}" target='right'>首页</a></li>
+                    <li class="home">欢迎您！河北省唐山市丰润区悦城明德幼儿园 {$Request.session.name}</li>
+                    <li><a href="{:url('index/Touppwd/touppwd')}" target='right'>修改密码</a></li>
+                    <li><a href="{:url('index/Right/logout')}" target='right'>退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- pc端头部 end -->
+
+
+    <!-- 移动端头部 begin -->
+    <div class="header_yidong">
+        <a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+        <a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+    </div>
+    <!-- 移动端头部 end -->
+
+    <div class="list">
+        <div class="listBtn">
+            <h4 class="home">团队排名</h4>
+            <a href="./?c=index" class="add home">返回</a>
+            <div class="rili">
+                <form action="./?c=team&a=teamRank" method="post" onsubmit="return checkform()">
+                    <div style="margin-left:4px;">
+                        <input type="text" name="startime" value="" onclick="WdatePicker()" size="9">
+                    </div>
+                    <span>～</span>
+                    <div>
+                        <input type="text" name="endtime" value="" onclick="WdatePicker()" size="9">
+                    </div>
+                    <div class="rilisub"><input type="submit" value="搜索"></div>
+                </form>
+
+            </div>
+        </div>
+
+        <div class="listTab" style="background:#ffffff;">
+            <!--排名旗-->
+            <table style="">
+                <tr>
+                    <td style="visibility:visible"><img src='/static/kindergarten/images/first.gif'></td>
+
+                    <td><img src="/static/kindergarten/images/first.gif"></td>
+
+                    <td><img src="/static/kindergarten/images/first.gif"></td>
+
+                    <td><img src="/static/kindergarten/images/first.gif"></td>
+
+                    <td><img src="/static/kindergarten/images/first.gif"></td>
+
+                    <td><img src="/static/kindergarten/images/first.gif"></td>
+
+                    <td><img src="/static/kindergarten/images/first.gif"></td>
+
+                    <td><img src="/static/kindergarten/images/first.gif"></td>
+
+                    <td style="visibility:visible"><img src='/static/kindergarten/images/last.gif'></td>
+
+                </tr>
+            </table>
+            <div id="zanwu" style=""></div>
+            <!--排名旗-->
+            <div id="main" class="tudiv" style="height:600px;"></div>
+
+            <div id="mainshu" class="tudiv" style="height:360px;display:none;"></div>
+            <script type="text/javascript">
+                var dom = document.getElementById("mainshu");
+                var myChart = echarts.init(dom);
+                option = {
+                    //提示框组件
+                    tooltip: {
+                        //触发类型
+                        trigger: 'axis',
+                        //指示器
+                        axisPointer: {
+                            type: 'shadow'
+                        },
+                        //提示悬浮文字
+                        formatter: "{a} <br/>{b} : {c}"
+                    },
+                    legend: {
+                        data: ['2016年']
+                    },
+                    grid: {
+                        left: '3%',
+                        right: '5%',
+                        bottom: '5%',
+                        top: '2%',
+                        containLabel: true
+                    },
+                    xAxis: {
+                        type: 'value',
+                        name: '分值',
+                        nameLocation: 'end',
+                        position: 'top',
+                        //去掉，坐标尺度
+                        axisTick: {
+                            show: false
+                        },
+                        axisLabel: {
+                            interval: 0,
+                            formatter: '{value}',
+                        }
+                    },
+                    yAxis: {
+                        type: 'category',
+                        name: '组名                          ',
+                        nameLocation: 'start',
+                        axisTick: {
+                            show: false
+                        },
+                        inverse: 'true', //排序
+                        data: ['大象班', '长颈鹿班', '海鸥班', '松鼠班', '蜜蜂班', '大雁班', '蚂蚁班', '天鹅班', '孔雀班'],
+                    },
+                    series: [{
+                        name: '得分',
+                        type: 'bar',
+                        data: [549.67, 405.67, 348, 300.67, 252, 221.33, 217.5, 195.33, 191.5],
+                        itemStyle: {
+                            normal: {
+                                color: function (params) {
+                                    // build a color map as your need.
+                                    var colorList = [
+                                        '#ef473a', '#f48678', '#f48678', '#f48678', '#f48678', '#f48678', '#f48678', '#f48678', '#03bd26'
+                                    ];
+                                    return colorList[params.dataIndex]
+                                },
+                                label: { show: true, position: 'right' }
+                            }
+                        },
+                    }]
+                };
+                if (option && typeof option === "object") {
+                    myChart.setOption(option, true);
+                }
+            </script>
+
+        </div>
+
+    </div>
+
+
+    <!--wap-->
+    <div class="tuandui">
+        <table class="paiming_table" border="0" cellspacing="0" cellpadding="0">
+            <tbody>
+                <tr>
+                    <td class="td_td01">大象班</td>
+                    <td class="td_td02">
+                        <div class="jk_tiao" style="width:100%; background-color: #ef473a;"></div>
+                    </td>
+                    <td class="td_td03">549.67</td>
+                </tr>
+                <tr>
+                    <td class="td_td01">长颈鹿班</td>
+                    <td class="td_td02">
+                        <div class="jk_tiao" style="width:73.80246329616%; background-color: #f48678;"></div>
+                    </td>
+                    <td class="td_td03">405.67</td>
+                </tr>
+                <tr>
+                    <td class="td_td01">海鸥班</td>
+                    <td class="td_td02">
+                        <div class="jk_tiao" style="width:63.310713700948%; background-color: #f48678;"></div>
+                    </td>
+                    <td class="td_td03">348</td>
+                </tr>
+                <tr>
+                    <td class="td_td01">松鼠班</td>
+                    <td class="td_td02">
+                        <div class="jk_tiao" style="width:54.700092782942%; background-color: #f48678;"></div>
+                    </td>
+                    <td class="td_td03">300.67</td>
+                </tr>
+                <tr>
+                    <td class="td_td01">蜜蜂班</td>
+                    <td class="td_td02">
+                        <div class="jk_tiao" style="width:45.845689231721%; background-color: #f48678;"></div>
+                    </td>
+                    <td class="td_td03">252</td>
+                </tr>
+                <tr>
+                    <td class="td_td01">大雁班</td>
+                    <td class="td_td02">
+                        <div class="jk_tiao" style="width:40.265977768479%; background-color: #f48678;"></div>
+                    </td>
+                    <td class="td_td03">221.33</td>
+                </tr>
+                <tr>
+                    <td class="td_td01">蚂蚁班</td>
+                    <td class="td_td02">
+                        <div class="jk_tiao" style="width:39.569196063092%; background-color: #f48678;"></div>
+                    </td>
+                    <td class="td_td03">217.5</td>
+                </tr>
+                <tr>
+                    <td class="td_td01">天鹅班</td>
+                    <td class="td_td02">
+                        <div class="jk_tiao" style="width:35.53586697473%; background-color: #f48678;"></div>
+                    </td>
+                    <td class="td_td03">195.33</td>
+                </tr>
+                <tr>
+                    <td class="td_td01">孔雀班</td>
+                    <td class="td_td02">
+                        <div class="jk_tiao" style="width:34.839085269343%; background-color: #03bd26;"></div>
+                    </td>
+                    <td class="td_td03">191.5</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <!--wap-->
+
+    <!--手机版的底部 begin-->
+    <div class="web">
+        <div class="webIn">
+            <ul>
+                <li>
+                    <a href="{:url('index/Right/right')}">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Ranking/ranking')}">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userlist/userlist')}">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Right/logout')}">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--手机版的底部 end-->
+
+    <!-- 版权 -->
+    <div id="bb" style="text-align:center;">
+        ©1guanli.com 版权所有 京ICP备13049583号-6
+    </div>
+
+    <!--cnzz统计代码-->
+    <div style="display:none">
+        <script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+    </div>
+    <!--cnzz统计代码-->
+
+    <!--禁止查看源代码-->
+    <script>
+        document.oncontextmenu = new Function("return false");
+        //document.onselectstart=new Function("return false"); 
+        event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!--
+//平台、设备和操作系统
+var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll) {
+
+        } else {
+            var oldHeight = document.body.scrollHeight;
+            $(window).resize(function () {
+                var newHeight = document.body.scrollHeight;
+                if (oldHeight < 600 && newHeight < 600) {
+                    if (oldHeight == newHeight) {
+                        $('.web').show();
+                    }
+                    else {
+                        $('.web').hide();
+                    }
+                }
+            });
+        }
+        -->
+
+    </script>
+</body>
+
+</html>
+<script type="text/javascript" src="/static/kindergarten/js/list.js"></script>
+<script type="text/javascript">
+        //检查表单
+        function checkform() {
+            if ($("input[name='startime']").val() == $("input[name='endtime']").val()) {
+                return false;
+            }
+            else
+                if ($("input[name='startime']").val() > $("input[name='endtime']").val()) {
+                    alert("请正确选择时间段");
+                    return false;
+                }
+            return true;
+        }
+
+</script>
+<script type="text/javascript">
+    var rankCon = '600.67';
+    if (rankCon == 0) {
+        alert("当月没有产生分值暂无排名");
+        $('#main').html("当月暂无排名");
+    }
+    else {
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: ''
+            },
+            color: ['#06da22'],
+            tooltip: {},
+            legend: {
+                data: ['团队排名']
+            },
+            xAxis: [
+                {
+                    type: 'category',
+                    //name:'额度',
+                    　　　　　　　　//这是设置的false，就不不显示下方的x轴，默认是true的
+                    show: true,
+                    　　　　　　　　//这里呢，就是每个柱的name了，根据实际情况下就好了，我就先写这三个
+                    data: ['大象班', '长颈鹿班', '海鸥班', '松鼠班', '蜜蜂班', '大雁班', '蚂蚁班', '天鹅班', '孔雀班'],
+                    axisLabel: {
+                        　　　　　　　　　　//这个是倾斜角度，也是考虑到文字过多的时候，方式覆盖采用倾斜
+                        //rotate: 30,
+                        　　　　　　　　　　//这里是考虑到x轴文件过多的时候设置的，如果文字太多，默认是间隔显示，设置为0，标示全部显示，当然，如果x轴都不显示，那也就没有意义了
+                        interval: 0
+                    }
+                }],
+            yAxis: [
+                {
+                    type: 'value',
+                    name: '',
+                    　　　　　　　　　　//下面的就很简单了，最小是多少，最大是多少，默认一次增加多少
+                    min: 1,
+                    max: 600.67,
+                    interval: 100,
+                    　　　　　　　　　　//下面是显示格式化，一般来说还是用的上的
+                    axisLabel: {
+                        formatter: '{value} '
+                    }
+                }
+            ],
+            series: [
+                {
+                    name: '分',
+                    type: 'bar',
+                    itemStyle: {
+                        normal: {
+                            　　　　　　　　　　　　//这里就是重头戏了，定义一个list，然后根据所以取得不同的值，这样就实现了，
+                            color: function (params) {
+                                // build a color map as your need.
+                                var colorList = ['#C1232B', '#B5C334', '#FCCE10', '#E87C25', '#27727B', '#FE8463', '#9BCA63', '#FAD860', '#F3A43B', '#60C0DD', '#D7504B', '#C6E579', '#F4E001', '#F0805A', '#26C0C0'
+                                ];
+                                return colorList[params.dataIndex]
+                            },
+                            　　　　　　　　　　　　//以下为是否显示，显示位置和显示格式的设置了
+                            label: {
+                                show: true,
+                                position: 'top',
+                                //formatter: '{c}'
+                                formatter: '{b}\n{c}'
+                            }
+                        }
+                    },
+                    　　　　　　　　//设置柱的宽度，要是数据太少，柱子太宽不美观~
+                    　　　　　　　　barWidth: 28,
+                    data: [549.67, 405.67, 348, 300.67, 252, 221.33, 217.5, 195.33, 191.5]
+                }
+            ]
+        };
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    }
+
+</script>

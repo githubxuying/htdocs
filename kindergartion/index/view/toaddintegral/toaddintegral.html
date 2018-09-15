@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>幼儿园积分管理系统-奖扣申请</title>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+    <!-- pc端头部 begin -->
+    <div class="header_pc">
+        <div class="hdIn">
+            <div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+            <div class="hdright">
+                <ul>
+                    <li class="home"><a href="{:url('index/Right/right')}" target='right'>首页</a></li>
+                    <li class="home">欢迎您！河北省唐山市路北区左岸摇篮幼儿园 {$Request.session.name}</li>
+                    <li><a href="{:url('index/Touppwd/touppwd')}" target='right'>修改密码</a></li>
+                    <li><a href="{:url('index/Right/logout')}" target='right'>退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- pc端头部 end -->
+
+
+    <!-- 移动端头部 begin -->
+    <div class="header_yidong">
+        <a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+        <a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+    </div>
+    <!-- 移动端头部 end -->
+    <!-- 奖扣 begin -->
+    <div class="jiangkou">
+        <div class="jkIn">
+            <a href="javascript:execuetype(0)" class="jiafen current">奖分</a>
+            <a href="javascript:execuetype(1)" class="jiafen ">扣分</a>
+            <input type="hidden" id="jiaorjian" value="0" title='用于判断是加分还是减分'>
+            <a href="javascript:history.go(-1);" class="add home">返回</a>
+        </div>
+        <!-- 加分申请单 begin -->
+        <div class="jiaTab">
+            <form action="{:url('integraladd')}" method="post" onsubmit="return checkform()">
+                <div class="jt">
+                    <span>对象：</span>
+                    <select id="zhiwu" onchange="changeobj(this.value)">
+                    <option value="24">员工</option>
+                    <option value="23">主管</option>
+                </select>
+                </div>
+                <div class="jt">
+                    <span>姓名：</span>
+                    <select name="teacher_id" id="teacher_id">   
+                    {volist name="user_info" id="info" }  
+                    <option value="{$info.id}" >{$info.name}</option>
+                    {/volist}
+                    <!-- <option value="11134" >蔡丽娟</option>
+                    <option value="10896" >高韬</option>
+                    <option value="11595" >高艳军</option>
+                    <option value="11141" >郭伟庭</option>
+                    <option value="11602" >何允红</option>
+                    <option value="10882" >黄鑫</option>
+                    <option value="11600" >胡瑞文</option>
+                    <option value="10869" >李茜</option>
+                    <option value="10848" >刘国建</option>
+                    <option value="11138" >骆银婷</option>
+                    <option value="10817" >刘颖</option>
+                    <option value="11603" >兰玉宏</option>
+                    <option value="11213" >刘圆</option>
+                    <option value="11601" >李志刚</option>
+                    <option value="10808" >刘娜</option>
+                    <option value="10875" >孟小洁</option>
+                    <option value="11318" >王玉莹</option>
+                    <option value="10891" >王思铭</option>
+                    <option value="11598" >王顺兴</option>
+                    <option value="10823" >王田甜</option>
+                    <option value="10871" >肖芳</option>
+                    <option value="10855" >徐冬雪</option>
+                    <option value="10786" >徐亚凤</option>
+                    <option value="10888" >杨馨怡</option>
+                    <option value="10884" >杨蕊</option>
+                    <option value="10759" >杨金鑫</option>
+                    <option value="11599" >张春利</option>
+                    <option value="10770" >郑秀玉</option>
+                    <option value="11597" >张小娜</option>
+                    <option value="11596" >张宁</option>
+                    <option value="10791" >张兵杰</option>
+                    <option value="10801" >周秀蕊</option>
+                    <option value="10835" >张月</option>
+                    <option value="10860" >章健</option>
+                    <option value="10862" >赵莉</option>
+                    <option value="10878" >张婷婷</option>
+                    <option value="11140" >张雪</option> -->
+                </select>
+                </div>
+
+                <div class="jt">
+                    <span>类别：</span>
+                    <select id="typeid" onchange="typecomfun(this.value)">
+                    <option value=''>--请选择--</option>
+                    {volist name="parent_sort" id="parent" } 
+                    <option value='2,3'>{$parent.sort}</option>
+                    {volist name=":sonsort($parent['id'])" id="v" } 
+                    <option value='{$v.id}'>&nbsp;&nbsp;&nbsp;{$v.sort}</option>
+                   
+                    {/volist}
+                    {/volist}
+                    <!-- <option value='2,3'>职业素养</option>
+                    <option value='2'>&nbsp;&nbsp;&nbsp;工作类</option>
+                    <option value='3'>&nbsp;&nbsp;&nbsp;个人类</option>
+                    <option value='5,6'>业务能力</option>
+                    <option value='5'>&nbsp;&nbsp;&nbsp;专业</option>
+                    <option value='6'>&nbsp;&nbsp;&nbsp;技能</option>
+                    <option value='8,9,10,11,12'>工作质量</option>
+                    <option value='8'>&nbsp;&nbsp;&nbsp;硬件设施</option>
+                    <option value='9'>&nbsp;&nbsp;&nbsp;清洁卫生</option>
+                    <option value='10'>&nbsp;&nbsp;&nbsp;服务质量</option>
+                    <option value='11'>&nbsp;&nbsp;&nbsp;基础管理</option>
+                    <option value='12'>&nbsp;&nbsp;&nbsp;保教工作</option> -->
+                </select>
+                </div>
+
+                <div class="jt">
+                    <span>申请固定项：</span>
+                    <select name="com_id" id="com_id" onchange="selectint('parkcom_id',this.value)">
+                    <option value="">--请选择--</option>
+                </select>
+                </div>
+                <div class="jt">
+                    <span>申请园所项：</span>
+                    <select name="parkcom_id" id="parkcom_id" onchange="selectint('com_id',this.value)">
+                    {volist name="result_jia" id="jia" } 
+                    {$jia}
+                    {/volist}
+                   
+                    <!-- <option value="">--请选择--</option>
+                    <option value="858">积极参与园内活动分享</option>
+                    <option value="903">月卫生评比</option>
+                    <option value="904">班级月收费</option>
+                    <option value="914">悉心关爱幼儿</option>
+                    <option value="962">首先完成任务。</option>
+                    <option value="1051">招生亲子体验活动</option> -->
+                </select>
+                </div>
+                <div class="jt">
+                    <span>说明：</span>
+                    <textarea data-autosize-on="true" rows="3" id="content" name="content"></textarea>
+                </div>
+                <div class="jt">
+                    <div align="center"><input type="submit" id="submitInput" value="申请" class="abutton"></div>
+                </div>
+        </div>
+        </form>
+        <!-- 加分申请单 end -->
+
+    </div>
+    <!-- 奖扣 begin -->
+
+    <!--手机版的底部 begin-->
+    <div class="web">
+        <div class="webIn">
+            <ul>
+                <li>
+                    <a href="{:url('index/Right/right')}">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Ranking/ranking')}">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userlist/userlist')}">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Right/logout')}">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--手机版的底部 end-->
+
+    <!-- 版权 -->
+    <div id="bb" style="text-align:center;">
+        ©1guanli.com 版权所有 京ICP备13049583号-6
+    </div>
+
+    <!--cnzz统计代码-->
+    <div style="display:none">
+        <script language="JavaScript">
+            if ({ $Request.session.role } == "3") {
+                $("#zhiwu").find("option")[1].remove();
+            }
+
+        </script>
+    </div>
+    <!--cnzz统计代码-->
+
+    <!--禁止查看源代码-->
+    <script>
+        document.oncontextmenu = new Function("return false");
+        //document.onselectstart=new Function("return false"); 
+        event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!--
+//平台、设备和操作系统
+var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll) {
+
+        } else {
+            var oldHeight = document.body.scrollHeight;
+            $(window).resize(function () {
+                var newHeight = document.body.scrollHeight;
+                if (oldHeight < 600 && newHeight < 600) {
+                    if (oldHeight == newHeight) {
+                        $('.web').show();
+                    }
+                    else {
+                        $('.web').hide();
+                    }
+                }
+            });
+        }
+        -->
+
+    </script>
+
+</body>
+
+</html>
+
+<script type="text/javascript" src="/static/kindergarten/js/list.js"></script>
+<script type="text/javascript" src="/static/kindergarten/script/qufenxiang.js"></script>
+<script type="text/javascript" src="/static/kindergarten/script/integral_add.js"></script>
+<script type="text/javascript">
+    var parkjiaselect = "<?php echo $custom_jiafen; ?>";
+    var parkjianselect = "<?php echo $custom_jianfen; ?>";
+
+</script>

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>分享家管理系统-账号管理</title>
+    <link rel="stylesheet" href="/static/share/css/index.css">
+    <script type="text/javascript" language="javascript" src="/static/share/js/tuo.js"></script>
+    <link href="/static/share/css/tuo.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" language="javascript" src="/static/share/js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/share/js/jquery-1.4.2.min.js"></script>
+</head>
+
+<body>
+    <div id="overlay"></div>
+    <link rel="stylesheet" href="/static/share/css/index.css">
+    <script type="text/javascript" src="/static/share/js/jquery-1.7.2.min.js"></script>
+
+    <!-- pc端头部 begin -->
+    <div class="header_pc">
+        <div class="hdIn">
+            <div class="logo"><img src="/static/share/images/logo_pc.png" alt="" width="100"></div>
+            <div class="hdright">
+                 
+                <ul>
+                    <li class="home"><a href="{:url('index/Right/right')}" target='right'>首页</a></li>
+                    <li class="home"> {$Request.session.name},分享家欢迎您！</li>
+                    <li><a href="{:url('index/Account/excel')}" target='right'>导出excel</a></li>
+                    <li><a href="{:url('index/Touppwd/touppwd')}" target='right'>修改密码</a></li>
+                    <li><a href="{:url('index/Right/logout')}" target='right'>退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- pc端头部 end -->
+
+
+    <!-- 移动端头部 begin -->
+    <div class="header_yidong">
+        <a href="#" class="hyd_l"><img src="/static/share/images/logo_yd.png" alt=""></a>
+        <a href="#" class="hyd_r"><img src="/static/share/images/logoyd_r.png" alt=""></a>
+
+    </div>
+    <!-- 移动端头部 end -->
+    <div class="list">
+        <div class="listBtn">
+            <h4 class="home">账号管理</h4>
+            <a href="javascript:history.go(-1);" class="add home">返回</a>
+            <a href="{:url('index/Account/account')}?check=全部" class="add home" id="leader">全部</a>
+            <a href="{:url('index/Account/account')}?check=信息有误" class="add home" id="my">信息有误</a>
+            <a href="{:url('index/Account/account')}?check=核实" class="add home" id="all">核实</a>
+            <a href="{:url('index/Account/account')}?check=未核实" class="add">未核实</a>
+            <div class="rili">
+                <div ><p>家庭账户：</p></div>
+                <div class="rili_"><input type="text" name="account" id="account" value="" size="15"></div>
+                <div  style="margin-left: 5px;"><p>业主：</p></div>
+                <div class="rili_"><input type="text" name="owner" id="owner" value="" size="15"></div>
+                <div class="rilisub"><input type="button" value="搜索" class="add" onclick="verify()"></div>
+            </div>
+        </div>
+        <div class="listTab">
+            <table id="tab" width="200" border="0" cellspacing="0" cellpadding="0">
+        <tr class="tr01" align="center">
+                <td>编号</td>
+                <td>家庭账户</td>
+                <td>业主</td>
+                <td>身份证号</td>
+                <td>电话</td>
+                
+                <td>成交</td>
+                <td>未成交</td>
+                <td>账户状态</td>
+                <td>选择</td>
+                <td>操作</td>
+            </tr>
+            {volist name="ownerlist" id="owner"  } 
+            <tr id="tr{$owner.family_account}">
+                <td align="center">{$temp++}</td>
+                <td>{$owner.family_account}</td>
+                <td>{$owner.owner}</td>
+                <td>{$owner.id_card}</td>
+                <td>{$owner.phone}</td>
+                <td><a href="{:url('index/Accountlist/accountlist')}?account={$owner.family_account}&list=yes">
+                    {$owner.count_yes}套
+                    <img src='/static/share/images/face/haixiu.gif' class='faceimg'>
+                </a>
+                </td>
+                <td>
+                   <a href="{:url('index/Accountlist/accountlist')}?account={$owner.family_account}&list=no">
+                    {$owner.count_no}套
+                    <img src='/static/share/images/face/haixiu.gif' class='faceimg'>
+                  </a>
+                </td>
+                <td>{$owner.account_status}</td>
+
+                <td>
+                        <select id="typeid{$owner.family_account}" onchange="typecomfun(this.value)">
+                                <option value=''>--请选择--</option>
+                                <option value='1'>&nbsp;&nbsp;&nbsp;核实</option>
+                                <option value='2'>&nbsp;&nbsp;&nbsp;信息有误</option>                                     
+                        </select>
+                </td>
+                <td>
+
+                    <a href="javascript:examine('{$owner.family_account}','typeid{$owner.family_account}')" onclick="return myConfirm1()">保存</a>
+                </td>
+            </tr>
+
+            {/volist}
+           
+           
+                
+            </table>
+        </div>
+
+    </div>
+
+
+    <!--手机版的底部 begin-->
+    <div class="web">
+        <div class="webIn">
+			<ul>
+				<li>
+					<a href="{:url('index/Right/right')}">
+                    <img src="/static/share/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Query/query')}">
+                    <img src="/static/share/images/nav_02_h.png" alt="">
+                    <p>查询</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Order/order')}">
+                    <img src="/static/share/images/nav_03_h.png" alt="" >
+                    <p>推荐</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/share/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Right/logout')}">
+                    <img src="/static/share/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+				</li>
+			</ul>
+        </div>
+    </div>
+    <!--手机版的底部 end-->
+
+    <!-- 版权 -->
+    <div id="bb" style="text-align :center;">
+        ©1guanli.com 版权所有 京ICP备13049583号-6
+    </div>
+
+    <!--cnzz统计代码-->
+    <div style="display:none">
+        <script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+    </div>
+    <!--cnzz统计代码-->
+
+    <!--禁止查看源代码-->
+    <script>
+        document.oncontextmenu = new Function("return false");
+        //document.onselectstart=new Function("return false"); 
+        event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+
+//平台、设备和操作系统
+var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll) {
+
+        } else {
+            var oldHeight = document.body.scrollHeight;
+            $(window).resize(function () {
+                var newHeight = document.body.scrollHeight;
+                if (oldHeight < 600 && newHeight < 600) {
+                    if (oldHeight == newHeight) {
+                        $('.web').show();
+                    }
+                    else {
+                        $('.web').hide();
+                    }
+                }
+            });
+        }
+        
+
+    </script>
+</body>
+
+</html>
+
+<script type="text/javascript">
+    var man = "";
+    if (man != '') {
+        $('#' + man).addClass('current');
+    }
+    else {
+        $('#all').addClass('current');
+        $('#ball').addClass('current');
+    }
+    //账号操作
+    function examine(id, type) {
+        var typeid = $('#'+type).val(); 
+      
+        $.ajax({
+            url:"examine",
+            type:'get',
+           
+            data:{account:id,typeid:typeid},
+            dataType:'json',
+            async:false,
+             success: function (msg) {
+                window.location.reload();
+                 
+             }
+        });
+
+    //       if(result.length>0){
+    //       window.open(result,"_self");
+
+    //   }
+
+    }
+
+
+    //搜索
+    function verify(){
+        var account = $("input[name='account']").val(); 
+        var owner = $("input[name='owner']").val(); 
+//alert(account);
+//alert(owner);
+       result=this.location.href+"&check=1&account="+account+"&owner="+owner;
+      
+     if(result.length>0){
+         window.location.reload();
+         window.open(result,"_self");
+
+     }
+    }
+
+    function myConfirm1() {
+        var tmp = window.confirm("确定要执行此项操作吗？");
+        if (tmp) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    //验证搜索
+    function checkform() {
+        var sname = $('#sname').val();
+        if (sname == '') {
+            return false;
+        }
+        else {
+            var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
+            if (!reg.test(sname) || sname.length > 5 || sname.length < 2) {
+                alert("请输入2-5位中文姓名");
+                return false;
+            }
+            else {
+                window.location.href = "./?c=integral&a=myVerify&sname=" + sname;
+            }
+        }
+    }
+
+</script>

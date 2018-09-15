@@ -1,0 +1,405 @@
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>明德幼儿园积分管理系统-自定义列表</title>
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/tuo.js"></script>
+    <link href="/static/kindergarten/css/tuo.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/jquery-1.4.2.min.js"></script>
+</head>
+<body>
+<div id="overlay"></div> 
+<link rel="stylesheet" href="/static/kindergarten/css/index.css">
+<script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+<!-- pc端头部 begin -->
+<div class="header_pc">
+	<div class="hdIn">
+		<div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+		<div class="hdright">
+			<ul>
+				<li class="home"><a href="./?c=index" target='right'>首页</a></li>
+				<li class="home">欢迎您！河北省唐山市丰润区悦城明德幼儿园 王秀红</li>
+				<li><a href="{:url('touppwd')}" target='right'>修改密码</a></li>
+				<li><a href="./?c=index&a=logout" target='right'>退出</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- pc端头部 end -->
+
+
+<!-- 移动端头部 begin -->
+<div class="header_yidong">
+	<a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+	<a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+</div>
+<!-- 移动端头部 end -->
+    <div class="list">
+        <div class="listBtn">
+            <h4>定义奖扣</h4>
+            <a href="javascript:history.go(-1);" class="add home">返回</a>
+                        <a href="javascript:show('addstu')" class="add home">添加</a>
+                    </div>
+        <div class="listTab">
+            <table id="tab" width="200" border="0" cellspacing="0" cellpadding="0">
+                <tr class="tr01"> 
+                    <td>编号</td>
+                    <td>奖扣</td>
+                    <td>奖扣项</td>
+                    <td>说明</td>
+                    <td>分值</td>
+                    <td>状态</td>
+                    <td>添加人</td>
+                    <td>添加时间</td>
+                                        <td class="home">操作</td>
+                                    </tr>
+                                <tr id="tr1051">
+                    <td align="center">1</td>
+                    <td>
+                                                    奖项
+                                            </td>
+                    <td id="1051title">招生亲子体验活动</td>
+                    <td id="1051explain">双休时间积极参加幼儿园招生亲子体验活动</td>
+                    <td>20 ～ 0</td>  
+                    <td>
+                                                    使用
+                                                <input type="hidden" id="1051state" value="0">
+                    </td>       
+                    <td>王秀红</td>
+                    <td>2017/05/16</td>
+                                        <td align="center" class="home"><a href="javascript:updelimit(1051)"><img src="/static/kindergarten/images/icon_edit.gif"></a></td>
+                                    </tr>
+                                <tr id="tr1001">
+                    <td align="center">2</td>
+                    <td>
+                                                    扣项
+                                            </td>
+                    <td id="1001title">不参与园所组织的各项培训</td>
+                    <td id="1001explain">不参与园所组织的各项培训半天扣5分、一天扣10分、一天半扣20分、两天扣30分</td>
+                    <td>-1 ～ -30</td>  
+                    <td>
+                                                    使用
+                                                <input type="hidden" id="1001state" value="0">
+                    </td>       
+                    <td>王秀红</td>
+                    <td>2017/04/27</td>
+                                        <td align="center" class="home"><a href="javascript:updelimit(1001)"><img src="/static/kindergarten/images/icon_edit.gif"></a></td>
+                                    </tr>
+                                <tr id="tr962">
+                    <td align="center">3</td>
+                    <td>
+                                                    奖项
+                                            </td>
+                    <td id="962title">首先完成任务。</td>
+                    <td id="962explain">执行力强，第一名完成幼儿园任务。</td>
+                    <td>5 ～ 0</td>  
+                    <td>
+                                                    使用
+                                                <input type="hidden" id="962state" value="0">
+                    </td>       
+                    <td>王秀红</td>
+                    <td>2017/04/13</td>
+                                        <td align="center" class="home"><a href="javascript:updelimit(962)"><img src="/static/kindergarten/images/icon_edit.gif"></a></td>
+                                    </tr>
+                                <tr id="tr914">
+                    <td align="center">4</td>
+                    <td>
+                                                    奖项
+                                            </td>
+                    <td id="914title">悉心关爱幼儿</td>
+                    <td id="914explain">晨间体锻发现孩子衣服穿的单薄，主动脱下自己的衣服给孩子。</td>
+                    <td>5 ～ 0</td>  
+                    <td>
+                                                    使用
+                                                <input type="hidden" id="914state" value="0">
+                    </td>       
+                    <td>王秀红</td>
+                    <td>2017/04/07</td>
+                                        <td align="center" class="home"><a href="javascript:updelimit(914)"><img src="/static/kindergarten/images/icon_edit.gif"></a></td>
+                                    </tr>
+                                <tr id="tr904">
+                    <td align="center">5</td>
+                    <td>
+                                                    奖项
+                                            </td>
+                    <td id="904title">班级月收费</td>
+                    <td id="904explain">完成班级月收费第一名</td>
+                    <td>10 ～ 0</td>  
+                    <td>
+                                                    使用
+                                                <input type="hidden" id="904state" value="0">
+                    </td>       
+                    <td>张妍</td>
+                    <td>2017/04/05</td>
+                                        <td align="center" class="home"><a href="javascript:updelimit(904)"><img src="/static/kindergarten/images/icon_edit.gif"></a></td>
+                                    </tr>
+                                <tr id="tr903">
+                    <td align="center">6</td>
+                    <td>
+                                                    奖项
+                                            </td>
+                    <td id="903title">月卫生评比</td>
+                    <td id="903explain">每月卫生评比第一名</td>
+                    <td>30 ～ 0</td>  
+                    <td>
+                                                    使用
+                                                <input type="hidden" id="903state" value="0">
+                    </td>       
+                    <td>张妍</td>
+                    <td>2017/04/05</td>
+                                        <td align="center" class="home"><a href="javascript:updelimit(903)"><img src="/static/kindergarten/images/icon_edit.gif"></a></td>
+                                    </tr>
+                                <tr id="tr858">
+                    <td align="center">7</td>
+                    <td>
+                                                    奖项
+                                            </td>
+                    <td id="858title">积极参与园内活动分享</td>
+                    <td id="858explain">积极发言，积极参与园内意见，积极参与园内活动</td>
+                    <td>1 ～ 10</td>  
+                    <td>
+                                                    使用
+                                                <input type="hidden" id="858state" value="0">
+                    </td>       
+                    <td>张妍</td>
+                    <td>2017/03/30</td>
+                                        <td align="center" class="home"><a href="javascript:updelimit(858)"><img src="/static/kindergarten/images/icon_edit.gif"></a></td>
+                                    </tr>
+                
+                            </table>
+        </div>
+    </div>
+
+<!--修改-->
+    <div id="editstu" style="display:none;" class="edit">
+        <h2>修改<span id="editstuclose">×</span></h2>
+        <form id="editdelimit">
+        <input type="hidden" name="id" id="editid" value="">
+        <div class="jiaTab">
+            <div class="jt">
+                <span>奖扣：</span>
+                <select name="pid" id="editpid">
+                    <option value="0">奖分</option>
+                    <option value="1">扣分</option>
+                </select>
+            </div>
+            <div class="jt">
+                <span>项名：</span>
+                <div class="jtdiv">
+                    <input type="text" id="edittitle" name="title" value="" size="35">
+                </div>
+            </div>
+            <div class="jt">
+                <span>分值：</span>
+                <select name="scores" id="editscores">
+                    <option value="1">1</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                </select> ～ 
+                <select name="max_scores" id="editmax_scores">
+                    <option value="">--最高分值--</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
+                                    </select>
+            </div>
+            <div class="jt">
+                <span>说明：</span>
+                <textarea rows="4" cols="35" name="explain" id="editexplain"></textarea>
+            </div> 
+            <div class="jt">
+                <span>状态：</span>
+                <select id="editstate" name="state">
+                    <option value="0">使用</option>
+                    <option value="1">停用</option>
+                </select>
+            </div>  
+        </div>
+        <div align="center" class="k-dialog-bottom">
+            <div class="btn5"><input type="button" onclick="checkform('edit')" value="保存"></div>
+            <div class="btn5"><input type="button" onclick="closewin('editstu')" value="取消"></div>
+        </div>
+        </form>
+    </div>
+<!--修改-->
+
+<!--添加-->
+    <div id="addstu" style="display:none;" class="edit">
+        <h2>添加<span id="addstuclose">×</span></h2>
+        <form id="adddelimit">
+        <div class="jiaTab">
+            <div class="jt">
+                <span>奖扣：</span>
+                <select name="pid">
+                    <option value="0">奖分</option>
+                    <option value="1">扣分</option>
+                </select>
+            </div>
+            <div class="jt">
+                <span>项名：</span>
+                <div class="jtdiv">
+                    <input type="text" id="addtitle" name="title" value="" size="35">
+                </div>
+            </div>
+            <div class="jt">
+                <span>分值：</span>
+                <select name="scores" id="addscores">
+                    <option value="1">1</option>
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                </select> ～ 
+                <select name="max_scores" id="addmax_scores">
+                    <option value="">--最高分值--</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
+                                    </select>
+            </div>
+            <div class="jt">
+                <span>说明：</span>
+                <textarea rows="4" cols="35" name="explain" id="addexplain"></textarea>
+            </div>
+        </div>
+        <div align="center" class="k-dialog-bottom">
+            <input type="button" class="btn5" style="border:1px solid #f97e76;margin-right:10px;" value="保存" onclick="checkform('add')">
+            <input type="button" class="btn5" onclick="closewin('addstu')" value="取消">
+        </div>
+        </form>
+    </div>
+<!--添加-->
+
+<!--手机版的底部 begin-->
+<div class="web">
+    <div class="webIn">
+        <ul>
+            <li>
+                <a href="./?c=index">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=ranking&a=ranking">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=userlist">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=userinfo">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=logout">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--手机版的底部 end-->
+
+<!-- 版权 -->
+<div id="bb" style="text-align:center;">
+©1guanli.com 版权所有  京ICP备13049583号-6
+</div>
+
+<!--cnzz统计代码-->
+<div style="display:none">
+<script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+</div>
+<!--cnzz统计代码-->
+
+<!--禁止查看源代码-->
+<script> 
+document.oncontextmenu=new Function("return false"); 
+//document.onselectstart=new Function("return false"); 
+event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!-- 
+//平台、设备和操作系统
+var system ={
+win : false,
+mac : false,
+xll : false
+};
+//检测平台
+var p = navigator.platform;
+system.win = p.indexOf("Win") == 0;
+system.mac = p.indexOf("Mac") == 0;
+system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+//跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+if(system.win||system.mac||system.xll){
+    
+}else{
+    var oldHeight = document.body.scrollHeight; 
+    $(window).resize(function(){
+        var newHeight = document.body.scrollHeight; 
+        if(oldHeight<600 && newHeight<600)
+        {
+            if(oldHeight==newHeight)
+            {
+                $('.web').show();
+            }
+            else{
+                $('.web').hide();
+            }  
+        }
+    });
+}
+-->
+</script>    
+</body>
+</html>
+<script type="text/javascript" src="/static/kindergarten/js/list.js"></script>
+<script type="text/javascript" src="/static/kindergarten/script/delimit_list.js"></script>

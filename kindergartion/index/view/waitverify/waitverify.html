@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>明德幼儿园积分管理系统-等待审核</title>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/tuo.js"></script>
+    <link href="/static/kindergarten/css/tuo.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/jquery-1.4.2.min.js"></script>
+</head>
+
+<body>
+    <div id="overlay"></div>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+    <!-- pc端头部 begin -->
+    <div class="header_pc">
+        <div class="hdIn">
+            <div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+            <div class="hdright">
+                <ul>
+                    <li class="home"><a href="{:url('index/Right/right')}" target='right'>首页</a></li>
+                    <li class="home">欢迎您！河北省唐山市丰润区悦城明德幼儿园 {$Request.session.name}</li>
+                    <li><a href="{:url('index/Touppwd/touppwd')}" target='right'>修改密码</a></li>
+                    <li><a href="{:url('index/Right/logout')}" target='right'>退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- pc端头部 end -->
+
+
+    <!-- 移动端头部 begin -->
+    <div class="header_yidong">
+        <a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+        <a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+    </div>
+    <!-- 移动端头部 end -->
+    <div class="list">
+        <div class="listBtn">
+            <h4>等待审核</h4>
+            <a href="javascript:history.go(-1);" class="add">返回</a>
+            <div class="rili">
+                <div><input type="text" name="sname" id="sname" value="" size="6"></div>
+                <div class="rilisub"><input type="button" value="搜索" class="add" onclick="checkselectform()"></div>
+            </div>
+        </div>
+        <div class="listTab">
+            <table id="tab" width="200" border="0" cellspacing="0" cellpadding="0">
+                <tr class="tr01" align="center">
+                    <td>编号</td>
+                    <td>申请人</td>
+                    <td>被申请人</td>
+                    <td>申请项</td>
+                    <td>描述</td>
+                    <td>奖扣</td>
+                    <td>申请时间</td>
+                    <td>操作</td>
+                </tr>
+                {volist name="waitverify" id="list" }
+                <tr id="{$list.id}tr">
+                    <td align="center">{$temp++}</td>
+                    <td id="{$list.id}applicanter">{$list.app_user}</td>
+                    <td id="{$list.id}teacher">{$list.be_app_user}</td>
+                    <td id="{$list.id}title">{$list.app_item}</td>
+                    <td id="{$list.id}con">{$list.description}</td>
+                    <td><img src='/static/kindergarten/images/face/xi.png' class='faceimg'></td>
+                    <td id="{$list.id}time">{$list.app_time}</td>
+                    <td align="center">
+                        <a href="javascript:upapply({$list.id},83,0,'yes')">审核</a> |
+                        <a href="javascript:upapply({$list.id},83,0,'no')">驳回</a>
+                    </td>
+                </tr>
+                {/volist}
+
+
+
+
+            </table>
+        </div>
+
+    </div>
+
+    <!--修改-->
+    <div id="editstu" style="display:none;" class="edit">
+        <h2><b id="editspan"></b><span id="editstuclose">×</span></h2>
+        <input type="hidden" name="id" id="editid" value="">
+        <input type="hidden" name="check" id="editcheck" value="">
+        <div class="jiaTab">
+            <div class="jt">
+                <span>申请人：</span>
+                <div class="jtdiv"><input type="text" id="editapplicanter" value="" readonly></div>
+            </div>
+            <div class="jt">
+                <span>被申请人：</span>
+                <div class="jtdiv"><input type="text" id="editteacher" value="" readonly><input type="text" style="display:none" id="editteacherid"
+                        value="" readonly></div>
+            </div>
+            <div class="jt">
+                <span>申请项：</span>
+                <div class="jtdiv"><input type="text" id="edittitle" value="" readonly></div>
+            </div>
+            <div class="jt" id="scorestr" style="display:none;">
+                <span>分值：</span>
+                <span id="scorestd" class="leftspan"></span>
+            </div>
+            <div class="jt">
+                <span>申请说明：</span>
+                <textarea cols="32" rows="3" id="editcontent" name="content" readonly></textarea>
+            </div>
+            <div class="jt" id="ksback" style="display:;">
+                <span>&nbsp;</span>
+                <select onchange="quickreply(this.options[this.selectedIndex].text)">
+                <option value="">--选择驳回说明--</option>
+                <option>说明不给力，想想怎么说，等你！</option>
+                <option>猴塞雷本职工作还申请，bu同意</option>
+                <option>你成会玩工作范围内的还申请！</option>
+                <option>亲，你这理由我表示不接受ha！</option>
+                <option>脑洞大开还是不懂，下次说清楚点!</option>
+                <option>现在问题来了，本月未结束呢!</option>
+                <option>本月未结束嘞，你太着急了!</option>
+                <option>不造本学期未结束呢!</option>
+                <option>描述太任性，只好忍笑驳回！</option>
+                <option>重复申请无效，多浪精力啊！</option>
+                <option>你再重复，本宫可要生气了！</option>
+                <option>亲，求你了，别再一直重复了！</option>
+                <option>表现不错，仍需努力，下次再说吧！</option>
+            </select>
+            </div>
+            <div class="jt" id="back" style="display:none">
+                <span>驳回原因：</span>
+                <textarea cols="32" rows="3" id="editbackcontent" name="backcontent"></textarea>
+            </div>
+        </div>
+        <div align="center" class="k-dialog-bottom">
+            <div class="btn5"><input type="button" value="保存" onclick="checkform()"></div>
+            <div class="btn5"><input type="button" onclick="closewin('editstu')" value="取消"></div>
+        </div>
+    </div>
+    <!--修改-->
+
+    <!--手机版的底部 begin-->
+    <div class="web">
+        <div class="webIn">
+            <ul>
+                <li>
+                    <a href="{:url('index/Right/right')}">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Ranking/ranking')}">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userlist/userlist')}">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Right/logout')}">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--手机版的底部 end-->
+
+    <!-- 版权 -->
+    <div id="bb" style="text-align:center;">
+        ©1guanli.com 版权所有 京ICP备13049583号-6
+    </div>
+
+    <!--cnzz统计代码-->
+    <div style="display:none">
+        <script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+    </div>
+    <!--cnzz统计代码-->
+
+    <!--禁止查看源代码-->
+    <script>
+        document.oncontextmenu = new Function("return false");
+        //document.onselectstart=new Function("return false"); 
+        event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!--
+//平台、设备和操作系统
+var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll) {
+
+        } else {
+            var oldHeight = document.body.scrollHeight;
+            $(window).resize(function () {
+                var newHeight = document.body.scrollHeight;
+                if (oldHeight < 600 && newHeight < 600) {
+                    if (oldHeight == newHeight) {
+                        $('.web').show();
+                    }
+                    else {
+                        $('.web').hide();
+                    }
+                }
+            });
+        }
+        -->
+
+    </script>
+</body>
+
+</html>
+<script type="text/javascript" src="/static/kindergarten/js/list.js"></script>
+<script type="text/javascript" src='/static/kindergarten/script/verify_list.js'></script>
+<script type="text/javascript">
+        function quickreply(txt) {
+            if (txt == '--选择驳回说明--') {
+                $('#editbackcontent').val('');
+            }
+            else {
+                $('#editbackcontent').val(txt);
+            }
+
+        }
+    //验证搜索
+    function checkselectform() {
+        var sname = $('#sname').val();
+        if (sname == '') {
+            return false;
+        }
+        else {
+            var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
+            if (!reg.test(sname) || sname.length > 5 || sname.length < 2) {
+                alert("请输入2-5位中文姓名");
+                return false;
+            }
+            else {
+                window.location.href = "./?c=integral&a=waitVerify&sname=" + sname;
+            }
+        }
+    }
+
+</script>

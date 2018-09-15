@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>明德幼儿园积分管理系统-奖扣下达</title>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/tuo.js"></script>
+    <link href="/static/kindergarten/css/tuo.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div id="overlay"></div>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+    <!-- pc端头部 begin -->
+    <div class="header_pc">
+        <div class="hdIn">
+            <div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+            <div class="hdright">
+                <ul>
+                    <li class="home"><a href="{:url('index/Right/right')}" target='right'>首页</a></li>
+                    <li class="home">欢迎您！河北省唐山市丰润区悦城明德幼儿园 {$Request.session.name}</li>
+                    <li><a href="{:url('index/Touppwd/touppwd')}" target='right'>修改密码</a></li>
+                    <li><a href="{:url('index/Right/logout')}" target='right'>退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- pc端头部 end -->
+
+
+    <!-- 移动端头部 begin -->
+    <div class="header_yidong">
+        <a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+        <a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+    </div>
+    <!-- 移动端头部 end -->
+    <!-- 奖扣 begin -->
+    <div class="jiangkou">
+        <div class="jkIn">
+            <a href="javascript:execuetype(0)" class="jiafen current">奖分</a>
+            <a href="javascript:execuetype(1)" class="jiafen ">扣分</a>
+            <a href="javascript:history.go(-1);" class="add home">返回</a>
+            <input type="hidden" id="jiaorjian" value="0" title='用于判断是加分还是减分'>
+        </div>
+        <!-- 加分申请单 begin -->
+        <form action="{:url('executeadd')}" method="post" onsubmit="return checkform()">
+            <div class="jiaTab">
+
+                <div class="jt">
+                    <span>对象：</span>
+                    <select id="zhiwu" onchange="changeobj()">
+                    <option value="24">职员</option>
+                    <option value="23">主管</option>
+                                    </select>
+                </div>
+                <div class="jt">
+                    <span>姓名：</span>
+                    <div class="jt rightdiv">
+                        <!-- <textarea rows="5" cols="35" id="name" onclick="selectnames()" placeholder="请点击选择姓名"></textarea> -->
+                        <div id="name" style="border:1px solid #ccc;height:100px;width:85%;overflow:auto;" onclick="selectnames()"></div>
+                        <input type="hidden" id="subnames" name="name">
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    $('#namediv').html("ddd");
+                </script>
+
+                <div class="jt">
+                    <span>类别：</span>
+                    <select id="typeid" onchange="typecomfun(this.value)">
+                    <option value=''>--请选择--</option>
+                    {volist name="parent_sort" id="parent" } 
+                    <option value='2,3'>{$parent.sort}</option>
+                    {volist name=":sonsort($parent['id'])" id="v" } 
+                    <option value='{$v.id}'>&nbsp;&nbsp;&nbsp;{$v.sort}</option>
+                   
+                    {/volist}
+                    {/volist}
+                    <!-- <option value='2,3'>职业素养</option>
+                    <option value='2'>&nbsp;&nbsp;&nbsp;工作类</option>
+                    <option value='3'>&nbsp;&nbsp;&nbsp;个人类</option>
+                    <option value='5,6'>业务能力</option>
+                    <option value='5'>&nbsp;&nbsp;&nbsp;专业</option>
+                    <option value='6'>&nbsp;&nbsp;&nbsp;技能</option>
+                    <option value='8,9,10,11,12'>工作质量</option>
+                    <option value='8'>&nbsp;&nbsp;&nbsp;硬件设施</option>
+                    <option value='9'>&nbsp;&nbsp;&nbsp;清洁卫生</option>
+                    <option value='10'>&nbsp;&nbsp;&nbsp;服务质量</option>
+                    <option value='11'>&nbsp;&nbsp;&nbsp;基础管理</option>
+                    <option value='12'>&nbsp;&nbsp;&nbsp;保教工作</option> -->
+                </select>
+                </div>
+
+                <div class="jt">
+                    <span>固定项：</span>
+                    <select name="com_id" id="com_id" onchange="getscores('parkcom_id',this.value)">
+                <option value=''>--请选择--</option>
+                </select>
+                </div>
+                <div class="jt">
+                    <span>自定义项：</span>
+                    <select name="parkcom_id" id="parkcom_id" onchange="getscores_custom('com_id',this.value)">
+                    <!-- <option value=''>--请选择--</option> -->
+                    {volist name="result_jia" id="jia" } 
+                    {$jia}
+                    {/volist}
+                    <!-- <option value='858' class="s0">积极参与园内活动分享</option>
+                    <option value='903' class="s0">月卫生评比</option>
+                    <option value='904' class="s0">班级月收费</option>
+                    <option value='914' class="s0">悉心关爱幼儿</option>
+                    <option value='962' class="s0">首先完成任务。</option>
+                    <option value='1051' class="s0">招生亲子体验活动</option> -->
+                </select>
+                </div>
+                <div class="jt">
+                    <span>分值：</span>
+                    <span id="scorestd" class="leftspan"></span>
+                    <input type="hidden" id="title" name="title" value="">
+                    <select id="scores" name="scores" style="display:none">
+                 
+                </select>
+                </div>
+                <div class="jt">
+                    <span>说明：</span>
+                    <textarea data-autosize-on="true" rows="3" id="content" name="content"></textarea>
+                </div>
+                <div class="jt">
+                    <div align="center"><input type="submit" value="确定下达" class="abutton"></div>
+                </div>
+            </div>
+        </form>
+        <!-- 加分申请单 end -->
+    </div>
+    <!-- 奖扣 begin -->
+
+    <!--修改-->
+    <style type="text/css">
+        .edit ul {
+            margin-left: 10px;
+        }
+
+        .edit ul li {
+            width: 20%;
+            float: left;
+            height: 25px;
+            line-height: 25px;
+        }
+
+        #editstu ul {
+            height: 356px;
+            overflow: auto;
+            padding: 0 0 10px 0;
+        }
+    </style>
+    <div id="editstu" style="display:none;" class="edit">
+        <h2>选择下达人<span id="editstuclose">×</span></h2>
+        <ul>
+            <li><input type="checkbox" id="SelectAll" onclick="selectAll()">全选</li>
+            {volist name="user_info" id="info" }
+            <li class="staff"><input type="checkbox" name="staffnames" value="  {$info.id},{$info.name}"><span>{$info.name}</span></li>
+            {/volist}
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11134,蔡丽娟"><span>蔡丽娟</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10896,高韬"><span>高韬</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11595,高艳军"><span>高艳军</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11141,郭伟庭"><span>郭伟庭</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11602,何允红"><span>何允红</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10882,黄鑫"><span>黄鑫</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11600,胡瑞文"><span>胡瑞文</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10869,李茜"><span>李茜</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10848,刘国建"><span>刘国建</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11138,骆银婷"><span>骆银婷</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10817,刘颖"><span>刘颖</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11603,兰玉宏"><span>兰玉宏</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11213,刘圆"><span>刘圆</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11601,李志刚"><span>李志刚</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10808,刘娜"><span>刘娜</span></li>
+            <li class="charge" style="display:none;"><input type="checkbox" name="chargenames" value="10750,李晶"><span>李晶</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10875,孟小洁"><span>孟小洁</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11318,王玉莹"><span>王玉莹</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10891,王思铭"><span>王思铭</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11598,王顺兴"><span>王顺兴</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10823,王田甜"><span>王田甜</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10871,肖芳"><span>肖芳</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10855,徐冬雪"><span>徐冬雪</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10786,徐亚凤"><span>徐亚凤</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10888,杨馨怡"><span>杨馨怡</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10884,杨蕊"><span>杨蕊</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10759,杨金鑫"><span>杨金鑫</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11599,张春利"><span>张春利</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10770,郑秀玉"><span>郑秀玉</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11597,张小娜"><span>张小娜</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11596,张宁"><span>张宁</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10791,张兵杰"><span>张兵杰</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10801,周秀蕊"><span>周秀蕊</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10835,张月"><span>张月</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10860,章健"><span>章健</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10862,赵莉"><span>赵莉</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  10878,张婷婷"><span>张婷婷</span></li>
+            <li class="staff"><input type="checkbox" name="staffnames" value="  11140,张雪"><span>张雪</span></li>
+
+        </ul>
+        <div align="center" class="k-dialog-bottom" style="clear:both">
+            <div class="btn5"><input type="button" value="确定" onclick="checknames()"></div>
+            <div class="btn5"><input type="button" onclick="closewin('editstu')" value="取消"></div>
+        </div>
+    </div>
+    <!--修改-->
+
+    <!--手机版的底部 begin-->
+    <div class="web">
+        <div class="webIn">
+            <ul>
+                <li>
+                    <a href="{:url('index/Right/right')}">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Ranking/ranking')}">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userlist/userlist')}">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Right/logout')}">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--手机版的底部 end-->
+
+    <!-- 版权 -->
+    <div id="bb" style="text-align:center;">
+        ©1guanli.com 版权所有 京ICP备13049583号-6
+    </div>
+
+    <!--cnzz统计代码-->
+    <div style="display:none">
+        <script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+    </div>
+    <!--cnzz统计代码-->
+
+    <!--禁止查看源代码-->
+    <script>
+        document.oncontextmenu = new Function("return false");
+        //document.onselectstart=new Function("return false"); 
+        event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!--
+//平台、设备和操作系统
+var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll) {
+
+        } else {
+            var oldHeight = document.body.scrollHeight;
+            $(window).resize(function () {
+                var newHeight = document.body.scrollHeight;
+                if (oldHeight < 600 && newHeight < 600) {
+                    if (oldHeight == newHeight) {
+                        $('.web').show();
+                    }
+                    else {
+                        $('.web').hide();
+                    }
+                }
+            });
+        }
+        -->
+    </script>
+
+</body>
+
+</html>
+<script type="text/javascript" src="/static/kindergarten/js/list.js"></script>
+
+<script type="text/javascript">
+    var parkjiaselect = " <?php echo $custom_jiafen; ?>";
+        var parkjianselect = " <?php echo $custom_jianfen; ?>";
+
+</script>
+<script type="text/javascript" src="/static/kindergarten/script/execute_add.js"></script>
+<script type="text/javascript">
+    //检查那些姓名被选过
+    function checknames() {
+        var object = $('#zhiwu').val();
+        //判断下达的对象
+        var object = object == '24' ? 'staffnames' : 'chargenames';
+        var obj = document.getElementsByName(object);
+        var show = hide = '';
+        for (var i = 0; i < obj.length; i++) {
+            if (obj[i].checked) {
+                var arr = obj[i].value.split(",");
+
+                show += show != '' ? ' , ' : '';
+                show += arr[1]; //如果选中，将value添加到变量s中 
+
+                hide += hide != '' ? ';' : '';
+                hide += obj[i].value; //如果选中，将value添加到变量s中 
+            }
+        }
+        $('#name').html(show);
+        $('#subnames').val(hide);
+        closewin('editstu');
+    }
+
+</script>

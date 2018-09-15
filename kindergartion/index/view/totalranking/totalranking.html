@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>明德幼儿园积分管理系统-排名</title>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/jquery-1.4.2.min.js"></script>
+</head>
+
+<body>
+    <div id="overlay"></div>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+    <!-- pc端头部 begin -->
+    <div class="header_pc">
+        <div class="hdIn">
+            <div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+            <div class="hdright">
+                <ul>
+                    <li class="home"><a href="{:url('index/Right/right')}" target='right'>首页</a></li>
+                    <li class="home">欢迎您！河北省唐山市丰润区悦城明德幼儿园 {$Request.session.name}</li>
+                    <li><a href="{:url('index/Touppwd/touppwd')}" target='right'>修改密码</a></li>
+                    <li><a href="{:url('index/Right/logout')}" target='right'>退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- pc端头部 end -->
+
+
+    <!-- 移动端头部 begin -->
+    <div class="header_yidong">
+        <a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+        <a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+    </div>
+    <!-- 移动端头部 end -->
+
+    <div class="list">
+        <div class="listBtn">
+            <h4 class="home">总分排名</h4>
+            <a href="javascript:history.go(-1);" class="add home">返回</a>
+            <div class="rili">
+                <!--总排名-->
+                <div>
+                    <select class="member" onchange="selectrole(this.value)">
+                        <option value="worker">员工非工龄</option>
+                        <option value="leader">主管非工龄</option>
+                        <option value="workeryear">员工工龄</option>
+                        <option value="leaderyear">主管工龄</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="listTab">
+            <table id="tab" border="0" cellspacing="0" cellpadding="0">
+                <tr class="tr01">
+                    <td>编号</td>
+                    <td>姓名</td>
+                    <td class="home">学历</td>
+                    <td class="home">资格证</td>
+                    <td class="home">职务</td>
+                    <td>入职时间</td>
+                    <td>总分</td>
+                </tr>
+                {volist name="list_user" id="list" offset="0" length='1'}
+                <tr>
+                    <td align="center">{$temp_i++}</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=徐冬雪">{$list.name}</a>
+                        <img src='/static/kindergarten/images/face/xing.png' class='xingimg'><img src='/static/kindergarten/images/face/xing.png'
+                            class='xingimg'><img src='/static/kindergarten/images/face/xing.png' class='xingimg'>
+                    </td>
+                    <td class="home">{$list.education}</td>
+                    <td class="home">
+                        {$list.qualification}
+                    </td>
+                    <td class="home">{$list.post}</td>
+                    <td>{$list.entry_time}</td>
+                    <td>{$list.total_score}</td>
+                </tr>
+                {/volist}
+                 {volist name="list_user" id="list" offset="1" length='1'}
+                <tr>
+                    <td align="center">{$temp_i++}</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=章健">{$list.name}</a>
+                        <img src='/static/kindergarten/images/face/xing.png' class='xingimg'><img src='/static/kindergarten/images/face/xing.png'
+                            class='xingimg'>
+                    </td>
+                    <td class="home">{$list.education}</td>
+                    <td class="home">
+                        {$list.qualification}
+                    </td>
+                    <td class="home">{$list.post}</td>
+                    <td>{$list.entry_time}</td>
+                    <td>{$list.total_score}</td>
+                </tr>
+                {/volist}
+                 {volist name="list_user" id="list" offset="2" length='1'}
+                <tr>
+                    <td align="center">{$temp_i++}</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=王田甜">{$list.name}</a>
+                        <img src='/static/kindergarten/images/face/xing.png' class='xingimg'>
+                    </td>
+                    <td class="home">{$list.education}</td>
+                    <td class="home">
+                        {$list.qualification}
+                    </td>
+                    <td class="home">{$list.post}</td>
+                    <td>{$list.entry_time}</td>
+                    <td>{$list.total_score}</td>
+                </tr>
+                {/volist}
+                 {volist name="list_user" id="list" offset="3" length='$count'}
+                <tr>
+                    <td align="center">{$temp_i++}</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=王鑫玥">{$list.name}</a>
+
+                    </td>
+                    <td class="home">{$list.education}</td>
+                    <td class="home">
+                        {$list.qualification}
+                    </td>
+                    <td class="home">{$list.post}</td>
+                    <td>{$list.entry_time}</td>
+                    <td>{$list.total_score}</td>
+                </tr>
+                {/volist}
+                <tr>
+                    <td align="center">5</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=刘娜">刘娜</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        教师资格证
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-06-02</td>
+                    <td>1804</td>
+                </tr>
+                <tr>
+                    <td align="center">6</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=王鑫玥">王鑫玥</a>
+
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-08-08</td>
+                    <td>1755</td>
+                </tr>
+                <tr>
+                    <td align="center">7</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=赵莉">赵莉</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-04-11</td>
+                    <td>1695</td>
+                </tr>
+                <tr>
+                    <td align="center">8</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=周秀蕊">周秀蕊</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        教师资格证
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2015-05-05</td>
+                    <td>1671</td>
+                </tr>
+                <tr>
+                    <td align="center">9</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=郑秀玉">郑秀玉</a>
+
+                    </td>
+                    <td class="home">本科</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-04-27</td>
+                    <td>1626</td>
+                </tr>
+                <tr>
+                    <td align="center">10</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=徐亚凤">徐亚凤</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-08-19</td>
+                    <td>1612</td>
+                </tr>
+                <tr>
+                    <td align="center">11</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=刘国建">刘国建</a>
+
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-08-10</td>
+                    <td>1512</td>
+                </tr>
+                <tr>
+                    <td align="center">12</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=肖芳">肖芳</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-05-11</td>
+                    <td>1484</td>
+                </tr>
+                <tr>
+                    <td align="center">13</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=黄鑫">黄鑫</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        教师资格证
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-10-17</td>
+                    <td>1465</td>
+                </tr>
+                <tr>
+                    <td align="center">14</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=张婷婷">张婷婷</a>
+
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-10-07</td>
+                    <td>1450</td>
+                </tr>
+                <tr>
+                    <td align="center">15</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=骆银婷">骆银婷</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-03-17</td>
+                    <td>1418</td>
+                </tr>
+                <tr>
+                    <td align="center">16</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=蔡丽娟">蔡丽娟</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        教师资格证
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-12-06</td>
+                    <td>1397</td>
+                </tr>
+                <tr>
+                    <td align="center">17</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=王思铭">王思铭</a>
+
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-02-06</td>
+                    <td>1393</td>
+                </tr>
+                <tr>
+                    <td align="center">18</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=高韬">高韬</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        教师资格证
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-03-09</td>
+                    <td>1389</td>
+                </tr>
+                <tr>
+                    <td align="center">19</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=张月">张月</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-02-06</td>
+                    <td>1358</td>
+                </tr>
+                <tr>
+                    <td align="center">20</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=张兵杰">张兵杰</a>
+
+                    </td>
+                    <td class="home">本科</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-08-15</td>
+                    <td>1335</td>
+                </tr>
+                <tr>
+                    <td align="center">21</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=张雪">张雪</a>
+
+                    </td>
+                    <td class="home">本科</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-03-20</td>
+                    <td>1247</td>
+                </tr>
+                <tr>
+                    <td align="center">22</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=郭伟庭">郭伟庭</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-03-22</td>
+                    <td>1210</td>
+                </tr>
+                <tr>
+                    <td align="center">23</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=王玉莹">王玉莹</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-04-06</td>
+                    <td>1201</td>
+                </tr>
+                <tr>
+                    <td align="center">24</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=杨蕊">杨蕊</a>
+
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-11-21</td>
+                    <td>1180</td>
+                </tr>
+                <tr>
+                    <td align="center">25</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=刘颖">刘颖</a>
+
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2015-05-16</td>
+                    <td>1178</td>
+                </tr>
+                <tr>
+                    <td align="center">26</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=杨馨怡">杨馨怡</a>
+
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-02-16</td>
+                    <td>1143</td>
+                </tr>
+                <tr>
+                    <td align="center">27</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=李茜">李茜</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-09-05</td>
+                    <td>1142</td>
+                </tr>
+                <tr>
+                    <td align="center">28</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=杨金鑫">杨金鑫</a>
+
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-03-16</td>
+                    <td>1125</td>
+                </tr>
+                <tr>
+                    <td align="center">29</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=刘圆">刘圆</a>
+
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-06-20</td>
+                    <td>1048</td>
+                </tr>
+                <tr>
+                    <td align="center">30</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=张春利">张春利</a>
+                        <img src='/static/kindergarten/images/face/jing.gif' class='lowimg'>
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2015-08-01</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td align="center">31</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=胡瑞文">胡瑞文</a>
+                        <img src='/static/kindergarten/images/face/jing.gif' class='lowimg'>
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2015-08-02</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td align="center">32</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=李志刚">李志刚</a>
+                        <img src='/static/kindergarten/images/face/jing.gif' class='lowimg'>
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2015-08-21</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td align="center">33</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=何允红">何允红</a>
+                        <img src='/static/kindergarten/images/face/jing.gif' class='lowimg'>
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2015-09-28</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td align="center">34</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=兰玉宏">兰玉宏</a>
+                        <img src='/static/kindergarten/images/face/jing.gif' class='lowimg'>
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2016-10-21</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td align="center">35</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=王顺兴">王顺兴</a>
+                        <img src='/static/kindergarten/images/face/jing.gif' class='lowimg'>
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-04-01</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td align="center">36</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=张宁">张宁</a>
+                        <img src='/static/kindergarten/images/face/jing.gif' class='lowimg'>
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-05-15</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td align="center">37</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=高艳军">高艳军</a>
+                        <img src='/static/kindergarten/images/face/jing.gif' class='lowimg'>
+                    </td>
+                    <td class="home">中专及以下</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-05-15</td>
+                    <td>1000</td>
+                </tr>
+                <tr>
+                    <td align="center">38</td>
+                    <td>
+
+                        <a href="./?c=integral&a=myVerify&sname=张小娜">张小娜</a>
+                        <img src='/static/kindergarten/images/face/jing.gif' class='lowimg'>
+                    </td>
+                    <td class="home">大专</td>
+                    <td class="home">
+                        无
+                    </td>
+                    <td class="home">员工</td>
+                    <td>2017-05-15</td>
+                    <td>1000</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!--手机版的底部 begin-->
+    <div class="web">
+        <div class="webIn">
+            <ul>
+                <li>
+                    <a href="{:url('index/Right/right')}">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Ranking/ranking')}">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userlist/userlist')}">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Right/logout')}">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--手机版的底部 end-->
+
+    <!-- 版权 -->
+    <div id="bb" style="text-align:center;">
+        ©1guanli.com 版权所有 京ICP备13049583号-6
+    </div>
+
+    <!--cnzz统计代码-->
+    <div style="display:none">
+        <script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+    </div>
+    <!--cnzz统计代码-->
+
+    <!--禁止查看源代码-->
+    <script>
+        document.oncontextmenu = new Function("return false");
+        //document.onselectstart=new Function("return false"); 
+        event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!--
+//平台、设备和操作系统
+var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll) {
+
+        } else {
+            var oldHeight = document.body.scrollHeight;
+            $(window).resize(function () {
+                var newHeight = document.body.scrollHeight;
+                if (oldHeight < 600 && newHeight < 600) {
+                    if (oldHeight == newHeight) {
+                        $('.web').show();
+                    }
+                    else {
+                        $('.web').hide();
+                    }
+                }
+            });
+        }
+        -->
+
+    </script>
+</body>
+
+</html>
+<script type="text/javascript" src="/static/kindergarten/js/list.js"></script>
+<script type="text/javascript">
+    var member = "worker";
+    if (member != '') {
+        $('.member').val(member);
+    }
+    else {
+        $('.member').val('worker');
+    }
+    function selectrole(role) {
+        window.location.href = './?c=ranking&a=totalRanking&member=' + role;
+    }
+
+    function selectroleyue(role) {
+        window.location.href = './?c=ranking&a=ranking&member=' + role;
+    }
+
+    //检查表单
+    function checkform() {
+        /*if($("input[name='startime']").val()==$("input[name='endtime']").val())
+        {   
+            return false;
+        }
+        else 
+        if($("input[name='startime']").val()>$("input[name='endtime']").val())
+        {
+            alert("请正确选择时间段");
+            return false;
+        }*/
+        return true;
+    }
+
+</script>

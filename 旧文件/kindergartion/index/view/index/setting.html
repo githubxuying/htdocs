@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <script type="text/javascript" language="javascript" src="/static/kindergarten/js/My97DatePicker/WdatePicker.js"></script>
+  <title>明德幼儿园积分管理系统-管理系统</title>
+  <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+  <style type="text/css">
+    .sezhi_select{
+        margin: 10px 0;
+    }
+    .sezhi_select select{
+        border: 1px solid #ccc;
+        height: 25px;
+        line-height: 25px;
+        border-radius: 5px;
+    }
+    .sub{
+        width: 50px;
+        text-align: center;
+        padding: 0;
+        height: 30px;
+        line-height: 30px;
+        background-color: rgb(150, 150, 152);
+        margin-left: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        color: #fff;
+        cursor:pointer;
+    }
+  </style>
+</head>
+<body>
+<link rel="stylesheet" href="/static/kindergarten/css/index.css">
+<script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+<!-- pc端头部 begin -->
+<div class="header_pc">
+	<div class="hdIn">
+		<div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+		<div class="hdright">
+			<ul>
+				<li class="home"><a href="./?c=index" target='right'>首页</a></li>
+				<li class="home">欢迎您！ </li>
+				<li><a href="{:url('touppwd')}" target='right'>修改密码</a></li>
+				<li><a href="./?c=index&a=logout" target='right'>退出</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- pc端头部 end -->
+
+
+<!-- 移动端头部 begin -->
+<div class="header_yidong">
+	<a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+	<a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+</div>
+<!-- 移动端头部 end -->
+
+<!-- 中间内容 begin -->
+<div class="con_detail">
+    <div class="listBtn">
+        <h4>设置</h4>
+        <a href="./?c=index" class="add ">返回</a>
+    </div>
+    <div class="condt_in">
+        <div class="sezhi_div"><b>设置员工登录时间</b></div>
+        <div class="sezhi_select">
+            <select name="loginTimeSet" id="loginTimeSet" onchange="settime(this.value)">
+                <option value="1">全天</option>
+                <option value="0">自定义</option>
+            </select>
+        </div>
+        <div class="sezhi_select" id="sethm">
+            中午：
+            <select id="moonShour">
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+            </select> : 
+            <select id="moonSminute">
+                <option value="00">00</option>
+                <option value="30">30</option>
+            </select>
+            ~
+            <select id="moonEhour">
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+            </select> : 
+            <select id="moonEminute">
+                <option value="00">00</option>
+                <option value="30">30</option>
+            </select>
+            <br/><br/>
+            <!--下午-->
+            下午：
+            <select id="lateShour">
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+            </select> : 
+            <select id="lateSminute">
+                <option value="00">00</option>
+                <option value="30">30</option>
+            </select>
+            ~
+            <select id="lateEhour">
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+                <option value="21">21</option>
+                <option value="22">22</option>
+                <option value="23">23</option>
+            </select> : 
+            <select id="lateEminute">
+                <option value="00">00</option>
+                <option value="30">30</option>
+            </select>
+        </div>
+        <div class="sezhi_select">
+            <input class="sub" type="button" value="提交" onclick="checkset()">
+        </div>
+    </div>
+</div>
+<!-- 中间内容 end -->
+
+<!--手机版的底部 begin-->
+<div class="web">
+    <div class="webIn">
+        <ul>
+            <li>
+                <a href="./?c=index">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=ranking&a=ranking">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=userlist">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=userinfo">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=logout">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--手机版的底部 end-->
+
+<!-- 版权 -->
+<div id="bb" style="text-align:center;">
+©1guanli.com 版权所有  京ICP备13049583号-6
+</div>
+
+<!--cnzz统计代码-->
+<div style="display:none">
+<script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+</div>
+<!--cnzz统计代码-->
+
+<!--禁止查看源代码-->
+<script> 
+document.oncontextmenu=new Function("return false"); 
+//document.onselectstart=new Function("return false"); 
+event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!-- 
+//平台、设备和操作系统
+var system ={
+win : false,
+mac : false,
+xll : false
+};
+//检测平台
+var p = navigator.platform;
+system.win = p.indexOf("Win") == 0;
+system.mac = p.indexOf("Mac") == 0;
+system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+//跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+if(system.win||system.mac||system.xll){
+    
+}else{
+    var oldHeight = document.body.scrollHeight; 
+    $(window).resize(function(){
+        var newHeight = document.body.scrollHeight; 
+        if(oldHeight<600 && newHeight<600)
+        {
+            if(oldHeight==newHeight)
+            {
+                $('.web').show();
+            }
+            else{
+                $('.web').hide();
+            }  
+        }
+    });
+}
+-->
+</script>    
+
+</body>
+</html>
+<script type="text/javascript" src="/static/kindergarten/js/list.js"></script>
+<script type="text/javascript">
+$('#moonShour').val("12");
+$('#moonSminute').val("30");
+
+$('#moonEhour').val("13");
+$('#moonEminute').val("30");
+
+$('#lateShour').val("17");
+$('#lateSminute').val("00");
+
+$('#lateEhour').val("20");
+$('#lateEminute').val("00");
+
+function checkset()
+{
+    var moonShour = $('#moonShour').val();//中午开始小时
+    var moonSminute = $('#moonSminute').val(); //中午开始分钟
+    var moonEhour = $('#moonEhour').val();  //中午终止小时
+    var moonEminute = $('#moonEminute').val(); //中午开始分钟
+    contrastTime('中午',moonShour,moonSminute,moonEhour,moonEminute);
+
+    var lateShour = $('#lateShour').val();//下午开始小时
+    var lateSminute = $('#lateSminute').val(); //下午开始分钟
+    var lateEhour = $('#lateEhour').val();  //下午终止小时
+    var lateEminute = $('#lateEminute').val(); //下午开始分钟
+    contrastTime('下午',lateShour,lateSminute,lateEhour,lateEminute);
+
+    var moonLoginTime = moonShour+":"+moonSminute+"~"+moonEhour+":"+moonEminute;
+    var lateLoginTime = lateShour+":"+lateSminute+"~"+lateEhour+":"+lateEminute;
+    //alert(moonLoginTime);alert(lateLoginTime);
+    var loginset = $('#loginTimeSet').val();
+    
+    $.ajax({
+        type:'POST',
+        url:'./?c=site&a=dosetting&loginset='+loginset+'&moontime='+moonLoginTime+'&latetime='+lateLoginTime,
+        //dataType:"json",
+        success: function(msg)
+        {
+            if(msg=='yes')
+            {
+                alert('设置成功');
+                window.location.href='./?c=index';
+            }
+        }
+    });
+
+}
+
+function settime(state)
+{
+    if(state==0)
+    {
+        $('#sethm').show();
+    }
+    else{
+        $('#sethm').hide();
+    }
+    $('#loginTimeSet').val(state);
+}
+settime("0");
+//时间比较
+function contrastTime(time,shour,smin,ehour,emin)
+{
+    var shour = parseInt(shour);
+    var smin = parseInt(smin);
+    var ehour = parseInt(ehour);
+    var emin = parseInt(emin); 
+    if((ehour<=shour && emin<smin) || ehour<shour)
+    {
+        alert("请正确设置"+time+"登录时间");
+        return false;
+    }
+}
+</script>

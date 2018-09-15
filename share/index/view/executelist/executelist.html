@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>明德幼儿园积分管理系统-奖扣下达</title>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/tuo.js"></script>
+    <link href="/static/kindergarten/css/tuo.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/jquery-1.4.2.min.js"></script>
+</head>
+
+<body>
+    <div id="overlay"></div>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+    <!-- pc端头部 begin -->
+    <div class="header_pc">
+        <div class="hdIn">
+            <div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+            <div class="hdright">
+                <ul>
+                    <li class="home"><a href="{:url('index/Right/right')}" target='right'>首页</a></li>
+                    <li class="home">欢迎您！河北省唐山市丰润区悦城明德幼儿园 {$Request.session.name}</li>
+                    <li><a href="{:url('index/Touppwd/touppwd')}" target='right'>修改密码</a></li>
+                    <li><a href="{:url('index/Right/logout')}" target='right'>退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- pc端头部 end -->
+
+
+    <!-- 移动端头部 begin -->
+    <div class="header_yidong">
+        <a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+        <a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+    </div>
+    <!-- 移动端头部 end -->
+
+    <div class="list">
+        <div class="listBtn">
+            <h4>奖扣下达</h4>
+            <a href="javascript:history.go(-1);" class="add">返回</a>
+            <a href="{:url('index/Toexecute/toexecute')}" class="add">添加</a>
+            <a href="./?c=integral&a=executeList&man=leader" class="add home" id="leader">其他下达</a>
+            <a href="./?c=integral&a=executeList&man=my" class="add home" id="my">我的下达</a>
+            <a href="./?c=integral&a=executeList&man=all" class="add home" id="all">全部</a>
+            <div class="rili">
+                <div><input type="text" id="sname" value="" size="6"></div>
+                <div class="rilisub"><input type="button" value="搜索" class="add" onclick="checkselectform()"></div>
+            </div>
+        </div>
+        <div class="listTab">
+            <table id="tab" width="200" border="0" cellspacing="0" cellpadding="0">
+                <tr class="tr01">
+                    <td>编号</td>
+                    <td>奖扣老师</td>
+                    <td>奖扣项</td>
+                    <td>描述</td>
+                    <td>分值</td>
+                    <td>下达领导</td>
+                    <td>下达时间</td>
+                    <td>操作</td>
+                </tr>
+                {volist name="execute_list" id="list" }
+                <tr id="tr{$list.id}">
+                    <td align="center">{$temp++}</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10808">{$list.be_app_user}</a></td>
+                    <td>{$list.app_item}</td>
+                    <td>{$list.description}</td>
+                    <td>{$list.score}</td>
+                    <td>{$list.app_user}</td>
+                    <td>{$list.review_time}</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute({$list.id})">取消</a>
+                    </td>
+                </tr>
+                {/volist}
+                <tr id="tr532237">
+                    <td align="center">2</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10823">王田甜</a></td>
+                    <td>好人好事</td>
+                    <td>5.22入园期间在二层厕所门口拾到墙上装饰，主动贴回原位</td>
+                    <td>1</td>
+                    <td>李晶</td>
+                    <td>2017-05-22 20:42</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(532237)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr532236">
+                    <td align="center">3</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10878">张婷婷</a></td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>认真完成消毒工作</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-22 20:42</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(532236)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr532235">
+                    <td align="center">4</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10823">王田甜</a></td>
+                    <td>服务工作得到家长认可，获得表扬（口头表扬</td>
+                    <td>5.22微信得到齐禹涵姥姥表扬</td>
+                    <td>10</td>
+                    <td>李晶</td>
+                    <td>2017-05-22 20:42</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(532235)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr532234">
+                    <td align="center">5</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10888">杨馨怡</a></td>
+                    <td>好人好事</td>
+                    <td>5月22日中午发现二楼厕所灯未关 及时关闭</td>
+                    <td>1</td>
+                    <td>王秀红</td>
+                    <td>2017-05-22 20:38</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(532234)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr532233">
+                    <td align="center">6</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10823">王田甜</a></td>
+                    <td>好人好事</td>
+                    <td>5.22在为幼儿铺床时，在许祎宸袋子中发现饮品，主动交给妈妈</td>
+                    <td>1</td>
+                    <td>王秀红</td>
+                    <td>2017-05-22 20:38</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(532233)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr532230">
+                    <td align="center">7</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=11213">刘圆</a></td>
+                    <td>同事间互帮互助</td>
+                    <td>5月22下午放学，帮助中一幼儿吹干衣服</td>
+                    <td>5</td>
+                    <td>王秀红</td>
+                    <td>2017-05-22 20:38</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(532230)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529670">
+                    <td align="center">8</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10891">王思铭</a></td>
+                    <td>好人好事</td>
+                    <td>2017年5月19日上午看到三楼楼梯墙创掉落 即使粘上</td>
+                    <td>1</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529670)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529669">
+                    <td align="center">9</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=11318">王玉莹</a></td>
+                    <td>好人好事</td>
+                    <td>2017年5月19日上午做卫生时发现一楼墙饰掉落，及时粘贴。</td>
+                    <td>1</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529669)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529667">
+                    <td align="center">10</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10770">郑秀玉</a></td>
+                    <td>服务工作得到家长认可，获得表扬（口头表扬</td>
+                    <td>5月18日晚上10点左右获得杨宁煕妈妈的表扬。</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529667)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529665">
+                    <td align="center">11</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10786">徐亚凤</a></td>
+                    <td>服务工作得到家长认可，获得表扬（口头表扬</td>
+                    <td>5月18日晚上杨宁熙妈妈发朋友圈表扬托一班的老师</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529665)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529663">
+                    <td align="center">12</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10871">肖芳</a></td>
+                    <td>每周本岗位管辖范围内硬件设施摆放符合园所</td>
+                    <td>本周设施摆放符合标准</td>
+                    <td>5</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529663)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529661">
+                    <td align="center">13</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10862">赵莉</a></td>
+                    <td>每周按时提交各类文案</td>
+                    <td>5月19日，本周按时提交各类文案</td>
+                    <td>5</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529661)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529660">
+                    <td align="center">14</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10871">肖芳</a></td>
+                    <td>每周本岗位管辖范围内物品干净清洁、无污渍</td>
+                    <td>本周本班物品干净清洁</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529660)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529659">
+                    <td align="center">15</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10862">赵莉</a></td>
+                    <td>每周按时按质完成工作计划</td>
+                    <td>5月19日本周按时按质完成工作计划</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529659)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529657">
+                    <td align="center">16</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10862">赵莉</a></td>
+                    <td>每周按时按质开展户外活动</td>
+                    <td>5月19日本周按时按质开展户外活动</td>
+                    <td>5</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529657)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529656">
+                    <td align="center">17</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10862">赵莉</a></td>
+                    <td>本岗位各项文本记录清晰、内容完整、无破损</td>
+                    <td>5月19日本岗位各项文本记录清晰，内容完整，无破损</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529656)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529654">
+                    <td align="center">18</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10862">赵莉</a></td>
+                    <td>所辖工作区域范围内无乱贴纸张现象</td>
+                    <td>5月19日，工作区域范围内无乱贴纸张现象</td>
+                    <td>5</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529654)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529653">
+                    <td align="center">19</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10862">赵莉</a></td>
+                    <td>每周本岗位管辖范围内物品干净清洁、无污渍</td>
+                    <td>5月19日本周本岗位范围内物品干净清洁，无污渍，无垃圾</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:48</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529653)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529651">
+                    <td align="center">20</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10862">赵莉</a></td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>5月19日本周本岗位范围按时按质认真完成卫生消毒工作</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:47</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529651)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529650">
+                    <td align="center">21</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10862">赵莉</a></td>
+                    <td>每周本岗位管辖范围内的地面保持清洁、干爽</td>
+                    <td>5月19日本周本岗位范围内的地面保持清洁，干爽</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:47</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529650)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529649">
+                    <td align="center">22</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10862">赵莉</a></td>
+                    <td>每周本岗位管辖范围内硬件设施摆放符合园所</td>
+                    <td>5月19日本周本岗位范围内硬件设施摆放符合园所标准</td>
+                    <td>5</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:47</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529649)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529648">
+                    <td align="center">23</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10786">徐亚凤</a></td>
+                    <td>每周按时完成本岗工作任务（由上级统一加分</td>
+                    <td>本周按时完成本岗工作任务</td>
+                    <td>5</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:47</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529648)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529647">
+                    <td align="center">24</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10871">肖芳</a></td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>本周按时完成消毒工作</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:47</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529647)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529646">
+                    <td align="center">25</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10786">徐亚凤</a></td>
+                    <td>每周本岗位管辖范围内硬件设施摆放符合园所</td>
+                    <td>本周本岗位管辖范围内硬件设施摆放符合园所标准</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:47</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529646)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529645">
+                    <td align="center">26</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10786">徐亚凤</a></td>
+                    <td>每周本岗位管辖范围内物品干净清洁、无污渍</td>
+                    <td>本周本岗位管辖范围内物品干净清洁，无污渍，无垃圾</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:47</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529645)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529644">
+                    <td align="center">27</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10871">肖芳</a></td>
+                    <td>每周本岗位管辖范围内的地面保持清洁、干爽</td>
+                    <td>本周地面清洁干爽</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:47</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529644)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529643">
+                    <td align="center">28</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10786">徐亚凤</a></td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>本周本岗位管辖范围按时按质认真完成卫生消毒工作</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:47</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529643)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529642">
+                    <td align="center">29</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10871">肖芳</a></td>
+                    <td>每月本岗位管辖范围内无卫生死角</td>
+                    <td>本周卫生无死角</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:47</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529642)">取消</a>
+                    </td>
+                </tr>
+                <tr id="tr529641">
+                    <td align="center">30</td>
+                    <td><a href="./?c=integral&a=myIntegral&uid=10786">徐亚凤</a></td>
+                    <td>每周本岗位管辖范围内的地面保持清洁、干爽</td>
+                    <td>本周本岗位管辖范围内的地面保持清洁，干爽</td>
+                    <td>10</td>
+                    <td>王秀红</td>
+                    <td>2017-05-21 20:47</td>
+                    <td align="center">
+                        <a href="javascript:cancel_execute(529641)">取消</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="9" align="center">总数：1508&nbsp;&nbsp;&nbsp页数：1/51&nbsp;&nbsp;&nbsp;&nbsp;首页&nbsp;上一页&nbsp;&nbsp;1&nbsp;<a href="?c=integral&a=executeList&page=2">[2]</a>
+                        <a
+                            href="?c=integral&a=executeList&page=3">[3]</a><a href="?c=integral&a=executeList&page=4">[4]</a><a href="?c=integral&a=executeList&page=5">[5]</a>
+                            <a
+                                href="?c=integral&a=executeList&page=6">[6]</a><a href="?c=integral&a=executeList&page=7">[7]</a><a href="?c=integral&a=executeList&page=8">[8]</a>
+                                <a
+                                    href="?c=integral&a=executeList&page=9">[9]</a><a href="?c=integral&a=executeList&page=10">[10]</a>&nbsp;<a href="?c=integral&a=executeList&page=2">下一页</a>&nbsp;
+                                    <a
+                                        href="?c=integral&a=executeList&page=51">尾页</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!--取消下达-->
+    <div id="addstu" style="display:none;" class="edit">
+        <h2>请填写取消说明<span id="addstuclose">×</span></h2>
+        <form id="cancelform">
+            <input type="hidden" name="id" id="addid" value="">
+            <div class="jiaTab">
+                <div class="jt">
+                    <span>说明：</span>
+                    <textarea rows="5" cols="30" id="backcon" name="backcon"></textarea>
+                </div>
+            </div>
+            <div align="center" class="k-dialog-bottom">
+                <input type="button" class="btn5" style="border:1px solid #f97e76;margin-right:10px;" value="保存" onclick="checkform('add')">
+                <input type="button" class="btn5" onclick="closewin('addstu')" value="取消">
+            </div>
+        </form>
+    </div>
+    <!--取消下达-->
+
+    <!--手机版的底部 begin-->
+    <div class="web">
+        <div class="webIn">
+            <ul>
+                <li>
+                    <a href="{:url('index/Right/right')}">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Ranking/ranking')}">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userlist/userlist')}">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Right/logout')}">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--手机版的底部 end-->
+
+    <!-- 版权 -->
+    <div id="bb" style="text-align:center;">
+        ©1guanli.com 版权所有 京ICP备13049583号-6
+    </div>
+
+    <!--cnzz统计代码-->
+    <div style="display:none">
+        <script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+    </div>
+    <!--cnzz统计代码-->
+
+    <!--禁止查看源代码-->
+    <script>
+        document.oncontextmenu = new Function("return false");
+        //document.onselectstart=new Function("return false"); 
+        event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!--
+//平台、设备和操作系统
+var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll) {
+
+        } else {
+            var oldHeight = document.body.scrollHeight;
+            $(window).resize(function () {
+                var newHeight = document.body.scrollHeight;
+                if (oldHeight < 600 && newHeight < 600) {
+                    if (oldHeight == newHeight) {
+                        $('.web').show();
+                    }
+                    else {
+                        $('.web').hide();
+                    }
+                }
+            });
+        }
+        -->
+
+    </script>
+</body>
+
+</html>
+<script type="text/javascript" src="/static/kindergarten/js/list.js"></script>
+<script type="text/javascript">
+    var man = "";
+    if (man != '') {
+        $('#' + man).addClass('current');
+    }
+
+    //取消奖扣
+    function cancel_execute(id) {
+        $('#addid').val(id);
+        show('addstu');
+    }
+    //提交取消
+    function checkform() {
+        var con = stripscript($('#backcon').val());
+        if (con.length < 5) {
+            alert('请填写取消说明');
+            return false;
+        }
+        else if (con.length > 300) {
+            alert('请控制说明字数');
+            return false;
+        }
+        if (!con) {
+            alert('请去处特殊字符串');
+            return false;
+        }
+        else {
+            var id = $('#addid').val();
+            $.ajax({
+                type: 'GET',
+                url: './?c=integral&a=cancelExecute&id=' + id + '&backcon=' + con,
+                success: function (msg) {
+                    if (msg == 'yes') {
+                        closewin('addstu');
+                        $('#tr' + id).remove();
+                    }
+                    else
+                        alert("操作失败");
+                }
+            });
+        }
+    }
+    //验证搜索
+    function checkselectform() {
+        var sname = $('#sname').val();
+        if (sname == '') {
+            return false;
+        }
+        else {
+            var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
+            if (!reg.test(sname) || sname.length > 5 || sname.length < 2) {
+                alert("请输入2-5位中文姓名");
+                return false;
+            }
+            else {
+                window.location.href = "./?c=integral&a=executeList&sname=" + sname;
+            }
+        }
+    }
+
+    function stripscript(s) {
+        var pattern = new RegExp("[`~!@#$^&*()=|{}':;',\\[\\].<>/?~！@#￥……&*（）——|{}【】‘；：”“'。，、？]")
+        var rs = "";
+        for (var i = 0; i < s.length; i++) {
+            rs = rs + s.substr(i, 1).replace(pattern, '');
+        }
+        if (rs != s) {
+            return false;
+        }
+        else {
+            return rs;
+        }
+    }
+
+</script>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="UTF-8">
+  	<title>Ajax</title>
+  	<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+function checkAjax(){
+ $.ajax({
+   url:"ajax.php",//请求的页面地址
+   type:'post',  //请求数据的方式 get post  
+   dataType:'text',  //数据返回的方式 text html json  
+   success:function(data) { 
+                   //请求之后，响应成功执行
+                  alert(data);
+          },    
+    error : function() { 
+                  //请求之后，响应不成功或者有错误执行
+                  alert("异常！");    
+          }
+ });
+}
+</script>
+</head>
+<body>
+ <button onclick="checkAjax()">Ajax Test</button>
+</body>
+</html>

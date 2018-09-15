@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>明德幼儿园积分管理系统-我的信息</title>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+    <!-- pc端头部 begin -->
+    <div class="header_pc">
+        <div class="hdIn">
+            <div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+            <div class="hdright">
+                <ul>
+                    <li class="home"><a href="{:url('index/Right/right')}" target='right'>首页</a></li>
+                    <li class="home">欢迎您！河北省唐山市丰润区悦城明德幼儿园 {$Request.session.name}</li>
+                    <li><a href="{:url('index/Touppwd/touppwd')}" target='right'>修改密码</a></li>
+                    <li><a href="{:url('index/Right/logout')}" target='right'>退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- pc端头部 end -->
+
+
+    <!-- 移动端头部 begin -->
+    <div class="header_yidong">
+        <a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+        <a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+    </div>
+    <!-- 移动端头部 end -->
+    {volist name="user_info" id="info" }
+    <div class="xinxi">
+        <div class="listBtn">
+            <h4>个人信息</h4>
+            <a href="javascript:history.go(-1);" class="add">返回</a>
+            <a href="{:url('index/Touppwd/touppwd')}" class="add">修改密码</a>
+        </div>
+        <!-- 这是在PC端显示的 -->
+        <table class="studentMsgTable" border="0" cellpadding="0" cellspacing="0">
+
+            <tbody>
+                <tr>
+                    <td class="tdRight">姓名：</td>
+                    <td>{$info.name}</td>
+                    <td class="tdRight">性别：</td>
+                    <td>{$info.sex}</td>
+                </tr>
+                <tr>
+                    <td class="tdRight">学历：</td>
+                    <td>{$info.education}</td>
+                    <td class="tdRight">婚姻：</td>
+                    <td>{$info.marriage}</td>
+                </tr>
+                <tr>
+                    <td class="tdRight">资格证：</td>
+                    <td>
+                        {$info.qualification}
+                    </td>
+                    <td class="tdRight">职务：</td>
+                    <td>{$info.post}</td>
+                </tr>
+                <tr>
+                    <td class="tdRight">出生日期：</td>
+                    <td>{$info.birthday}</td>
+                    <td class="tdRight">联系电话：</td>
+                    <td>{$info.tel}</td>
+                </tr>
+                <tr>
+                    <td class="tdRight">入职时间：</td>
+                    <td>{$info.entry_time}</td>
+                    <td class="tdRight">上次登录时间：</td>
+                    <td>{$info.last_time}</td>
+                </tr>
+                <tr>
+                    <td class="tdRight">特长：</td>
+                    <td>{$info.specialty}</td>
+                    <td class="tdRight">积分总数：</td>
+                    <td>{$info.total_score}</td>
+                </tr>
+            </tbody>
+
+        </table>
+        <!-- 这是在web端显示的 -->
+        <div class="webxinx"><br/>
+            <div class="webxx">
+                <span class="spanRight">姓名：</span>
+                <span>{$info.name}</span>
+            </div>
+            <div class="webxx">
+                <span class="spanRight">性别：</span>
+                <span>{$info.sex}</span>
+            </div>
+            <div class="webxx">
+                <span class="spanRight">婚姻：</span>
+                <span>{$info.marriage}</span>
+            </div>
+            <div class="webxx">
+                <span class="spanRight">学历：</span>
+                <span>{$info.education}</span>
+            </div>
+            <div class="webxx">
+                <span class="spanRight">资格证：</span>
+                <span>
+                        {$info.qualification}
+                                </span>
+            </div>
+            <div class="webxx">
+                <span class="spanRight">职务：</span>
+                <span>{$info.post}</span>
+            </div>
+            <div class="webxx">
+                <span class="spanRight">出生日期：</span>
+                <span>{$info.birthday}</span>
+            </div>
+            <div class="webxx">
+                <span class="spanRight">联系电话：</span>
+                <span>{$info.tel}</span>
+            </div>
+            <div class="webxx">
+                <span class="spanRight">入职时间：</span>
+                <span>{$info.entry_time}</span>
+            </div>
+            <div class="webxx">
+                <span class="spanRight">特长：</span>
+                <span>{$info.specialty}</span>
+            </div>
+            <div class="webxx">
+                <span class="spanRight">积分总数：</span>
+                <span>{$info.total_score}</span>
+            </div>
+            <div class="webxx">
+                <span class="spanRight">上次登录时间：</span>
+                <span>{$info.last_time}</span>
+            </div>
+
+        </div>
+    </div>
+    {/volist}
+    <!--手机版的底部 begin-->
+    <div class="web">
+        <div class="webIn">
+            <ul>
+                <li>
+                    <a href="{:url('index/Right/right')}">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Ranking/ranking')}">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userlist/userlist')}">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+                </li>
+                <li>
+                    <a href="{:url('index/Right/logout')}">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--手机版的底部 end-->
+
+    <!-- 版权 -->
+    <div id="bb" style="text-align:center;">
+        ©1guanli.com 版权所有 京ICP备13049583号-6
+    </div>
+
+    <!--cnzz统计代码-->
+    <div style="display:none">
+        <script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+    </div>
+    <!--cnzz统计代码-->
+
+    <!--禁止查看源代码-->
+    <script>
+        document.oncontextmenu = new Function("return false");
+        //document.onselectstart=new Function("return false"); 
+        event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!--
+//平台、设备和操作系统
+var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll) {
+
+        } else {
+            var oldHeight = document.body.scrollHeight;
+            $(window).resize(function () {
+                var newHeight = document.body.scrollHeight;
+                if (oldHeight < 600 && newHeight < 600) {
+                    if (oldHeight == newHeight) {
+                        $('.web').show();
+                    }
+                    else {
+                        $('.web').hide();
+                    }
+                }
+            });
+        }
+        -->
+
+    </script>
+</body>
+
+</html>

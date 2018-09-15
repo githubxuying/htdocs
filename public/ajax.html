@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<meta charset="UTF-8">
+  	<title>Ajax</title>
+  	<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+function checkAjax(){
+ $.ajax({
+   url:"http://www.tp5.com/ajax.php",//请求的页面地址
+   type:'get',  //请求数据的方式 get post  
+   dataType:'json',  //数据返回的方式 text html json  
+   success:function(data) { 
+                   //请求之后，响应成功执行
+                   
+                  alert(data['a']);
+          },    
+    error : function() { 
+                  //请求之后，响应不成功或者有错误执行
+                  alert("异常！");    
+          }
+ });
+}
+</script>
+</head>
+<body>
+ <button onclick="checkAjax()">Ajax Test</button>
+</body>
+</html>
+<!-- <html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<script type="text/javascript" src="jquery.min.js"></script>
+<script type="text/javascript">
+ $(function(){
+  $("#send").click(function(){
+   var cont = $("input").serialize();
+   $.ajax({
+    url:'ajax.php',
+    type:'post',
+    dataType:'json',
+    data:cont,
+    success:function(data){
+     var str = data.username + data.age + data.job;
+     $("#result").html(str);
+    }
+   });
+  });  
+ });
+</script>
+</head>
+<body>
+ <div id="result">一会看显示结果</div>
+ <form id="my" action="" method="post">
+  <p><span>姓名：</span><input type="text" name="username" /></p>
+  <p><span>年龄：</span><input type="text" name="age" /></p>
+  <p><span>工作：</span><input type="text" name="job" /></p>
+ </form>
+ <button id="send">提交</button>
+</body>
+</html> -->

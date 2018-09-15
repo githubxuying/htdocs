@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+
+	<link rel="stylesheet" href="/static/chaxun/jt/css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="/static/chaxun/jt/css/style.css"> <!-- Gem style -->
+	<script src="/static/chaxun/jt/js/modernizr.js"></script> <!-- Modernizr -->
+	
+	
+
+	
+	
+</head>
+<body>
+{volist name="list_jt" id="list_jt" empty="暂时没有数据"}
+{/volist}
+{volist name="list_bb" id="list_bb" empty="暂时没有数据"}
+{/volist}
+{volist name="list_mm" id="list_mm" empty="暂时没有数据" }
+{/volist}
+{volist name="list_hz1" id="list_hz1" empty="暂时没有数据" }
+{/volist}
+{volist name="list_hz2" id="list_hz2" empty="暂时没有数据" }
+{/volist}
+{volist name="list_hz3" id="list_hz3" empty="暂时没有数据" }
+{/volist}
+{volist name="list_yy" id="list_yy" empty="暂时没有数据" }
+{/volist}
+{volist name="list_nn" id="list_nn" empty="暂时没有数据" }
+{/volist}
+{volist name="list_wg" id="list_wg" empty="暂时没有数据" }
+{/volist}
+{volist name="list_wp" id="list_wp" empty="暂时没有数据" }
+{/volist}
+<section id="cd-table">
+	<header class="cd-table-column">
+		<h2>家庭成员</h2>
+		<ul>
+			<li>爸爸</li>
+			<li>妈妈</li>
+			<li>孩子</li>
+			<li>孩子</li>
+			<li>孩子</li>
+			<li>爷爷</li>
+			<li>奶奶</li>
+			<li>外公</li>
+			<li>外婆</li>
+		</ul>
+	</header>
+
+	<div class="cd-table-container">
+		<div class="cd-table-wrapper">
+
+			<div class="cd-table-column">
+				<h2>会员卡号</h2>
+				<ul>
+					<li>{$list_bb.card_num}</li>
+					<li>{$list_mm.card_num}</li>
+					<li>{$list_hz1.card_num}</li>
+				    <li>{$list_hz2.card_num}</li>
+					<li>{$list_hz3.card_num}</li>
+					<li>{$list_yy.card_num}</li>
+					<li>{$list_nn.card_num}</li>
+					<li>{$list_wg.card_num}</li>
+					<li>{$list_wp.card_num}</li>
+				</ul>
+			</div> <!-- cd-table-column -->
+
+			<div class="cd-table-column">
+				<h2>个人积分</h2>
+				<ul>
+					<li>{$list_bb.integral_total}</li>
+					<li>{$list_mm.integral_total}</li>
+					<li>{$list_hz1.integral_total}</li>
+					<li>{$list_hz2.integral_total}</li>
+					<li>{$list_hz3.integral_total}</li>
+					<li>{$list_yy.integral_total}</li>
+					<li>{$list_nn.integral_total}</li>
+					<li>{$list_wg.integral_total}</li>
+					<li>{$list_wp.integral_total}</li>
+					
+				
+				</ul>
+			</div> <!-- cd-table-column -->
+
+			<div class="cd-table-column">
+				<h2>家庭积分</h2>
+				<ul>
+					<li style="height:378px;line-height:378px;">{$list_jt.integral_total}</li>
+					
+				</ul>
+			</div> <!-- cd-table-column -->
+
+			<div class="cd-table-column">
+				<h2>查询明细</h2>
+				<ul>
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$list_bb['card_num']))}"><img src="/static/chaxun/jt/img/tab_search.png" style="max-width:23%;"></a></li>
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$list_mm['card_num']))}"><img src="/static/chaxun/jt/img/tab_search.png" style="max-width:23%;"></a></li>
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$list_hz1['card_num']))}"><img src="/static/chaxun/jt/img/tab_search.png" style="max-width:23%;"></a></li>
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$list_hz2['card_num']))}"><img src="/static/chaxun/jt/img/tab_search.png" style="max-width:23%;"></a></li>
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$list_hz3['card_num']))}"><img src="/static/chaxun/jt/img/tab_search.png" style="max-width:23%;"></a></li>
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$list_yy['card_num']))}"><img src="/static/chaxun/jt/img/tab_search.png" style="max-width:23%;"></a></li>
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$list_nn['card_num']))}"><img src="/static/chaxun/jt/img/tab_search.png" style="max-width:23%;"></a></li>
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$list_wg['card_num']))}"><img src="/static/chaxun/jt/img/tab_search.png" style="max-width:23%;"></a></li>
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$list_wp['card_num']))}"><img src="/static/chaxun/jt/img/tab_search.png" style="max-width:23%;"></a></li>
+				</ul>
+			</div> <!-- cd-table-column -->
+
+			
+
+		</div> <!-- cd-table-wrapper -->
+	</div> <!-- cd-table-container -->
+
+	<em class="cd-scroll-right"></em>
+</section> <!-- cd-table -->
+<!--
+<iframe src="time_.html" frameborder=0 width=500 height=500 marginheight=0 marginwidth=0 scrolling=no  />
+-->
+<iframe name="web" width="100%" frameborder=0 height="600" src="{:url('time_jt')}" id="web" onload="this.height=web.document.body.scrollHeight+500" ></iframe>  
+
+<script src="/static/chaxun/jt/js/jquery.min.js"></script>
+<script src="/static/chaxun/jt/js/main.js"></script> <!-- Gem jQuery -->
+
+</body>
+</html>

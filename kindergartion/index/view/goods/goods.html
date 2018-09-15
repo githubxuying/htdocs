@@ -1,0 +1,39 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<script type="text/javascript" language="javascript" src="/static/kindergarten/js/jquery.min.js"></script>
+<title>产品分类</title>
+</head>
+<body>
+<span style="color:red;">*点击分类名称，可立即删除</span>
+<script type="text/javascript">
+//alert(123);
+
+
+	$.ajax({
+             //
+             url:"{:url('product_category_ajax')}",
+             type:'get',
+             
+             dataType:'json',
+             async: false,
+             success:function(data){
+                 //alert(1232);
+             console.log(data);
+                 //
+             alert(data[0].account);
+            //  alert(data.data.account);
+                 //alert(data.account);
+            //var json=JSON.parse(data);
+           //		console.log(data);
+           	
+             }	
+
+            });
+
+    
+
+</script>
+</body>
+</html>

@@ -1,0 +1,274 @@
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>明德幼儿园积分管理系统-明细列表</title>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/jquery-1.4.2.min.js"></script>
+</head>
+<body>
+<div id="overlay"></div> 
+<link rel="stylesheet" href="/static/kindergarten/css/index.css">
+<script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+<!-- pc端头部 begin -->
+<div class="header_pc">
+	<div class="hdIn">
+		<div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+		<div class="hdright">
+			<ul>
+				<li class="home"><a href="./?c=index" target='right'>首页</a></li>
+				<li class="home">欢迎您！河北省唐山市丰润区悦城明德幼儿园 王秀红</li>
+				<li><a href="{:url('touppwd')}" target='right'>修改密码</a></li>
+				<li><a href="./?c=index&a=logout" target='right'>退出</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- pc端头部 end -->
+
+
+<!-- 移动端头部 begin -->
+<div class="header_yidong">
+	<a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+	<a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+</div>
+<!-- 移动端头部 end -->
+    
+    <div class="list">
+        <div class="listBtn">
+            <h4>积分明细</h4>
+            <a href="javascript:history.go(-1);" class="add home">返回</a>
+            <div class="rili">
+            <form action="./?c=integral&a=details" method="post" onsubmit="return checkform()">
+            <input type="hidden" name="uid" value="10750">
+                <div class="marginright home">
+                    <select name="timeType">
+                        <option value="applytime">申请时间</option>
+                        <option value="addtime">审核时间</option>
+                    </select>
+                </div>
+                <div><input type="text" name="startime" onclick="WdatePicker()" size="10" value=""></div><span> ～ </span>
+                <div><input type="text" name="endtime" onclick="WdatePicker()" size="10" value=""></div>
+                <div class="rilisub"><input type="submit" value="搜索"></div>
+            </form> 
+            </div>
+        </div>
+        <div class="listTab">
+            <table id="tab" width="200" border="0" cellspacing="0" cellpadding="0">
+                <tr class="tr01"> 
+                    <td>编号</td>
+                    <td>申请/下达人</td>
+                    <td>申请/下达项</td>
+                    <td>描述</td>
+                    <td>分值</td>
+                    <td>申请时间</td>
+                    <td>审核人</td>
+                    <td>审核时间</td>
+                </tr>
+                                                <tr class="xtxd">
+                                
+                    <td align="center">1</td>
+                    <td>系统</td>
+                    <td>【学历】大专</td>
+                    <td>固定积分</td>     
+                    <td align="center">
+                        30
+                        <img src='/static/kindergarten/images/face/fangentou.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-04-08 14:26</td>
+                    <td>系统</td>
+                    <td>2017-04-08 14:26</td>
+                </tr>
+                                                <tr class="xtxd">
+                                
+                    <td align="center">2</td>
+                    <td>系统</td>
+                    <td>【职务】班级主管</td>
+                    <td>固定积分</td>     
+                    <td align="center">
+                        100
+                        <img src='/static/kindergarten/images/face/yaobai.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-04-08 14:26</td>
+                    <td>系统</td>
+                    <td>2017-04-08 14:26</td>
+                </tr>
+                                                <tr class="xtxd">
+                                
+                    <td align="center">3</td>
+                    <td>系统</td>
+                    <td>【职位】教师资格证</td>
+                    <td>固定积分</td>     
+                    <td align="center">
+                        30
+                        <img src='/static/kindergarten/images/face/fangentou.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-04-08 14:26</td>
+                    <td>系统</td>
+                    <td>2017-04-08 14:26</td>
+                </tr>
+                                                <tr class="ldxd">
+                                
+                    <td align="center">4</td>
+                    <td>张妍</td>
+                    <td>承担大型活动组织工作</td>
+                    <td>积极承担南湖亲子活动</td>     
+                    <td align="center">
+                        20
+                        <img src='/static/kindergarten/images/face/gaoxing.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-04-05 18:27</td>
+                    <td>张妍</td>
+                    <td>2017-04-05 18:27</td>
+                </tr>
+                                                <tr class="ldxd">
+                                
+                    <td align="center">5</td>
+                    <td>李秀慧</td>
+                    <td>工龄积分</td>
+                    <td></td>     
+                    <td align="center">
+                        100
+                        <img src='/static/kindergarten/images/face/yaobai.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-03-17 20:14</td>
+                    <td>系统</td>
+                    <td>2017-03-17 20:14</td>
+                </tr>
+                                                <tr class="ldxd">
+                                
+                    <td align="center">6</td>
+                    <td>李秀慧</td>
+                    <td>基础积分</td>
+                    <td></td>     
+                    <td align="center">
+                        1000
+                        <img src='/static/kindergarten/images/face/fei.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-03-17 20:14</td>
+                    <td>系统</td>
+                    <td>2017-03-17 20:14</td>
+                </tr>
+                                            </table>
+        </div>
+    </div>
+
+<!--手机版的底部 begin-->
+<div class="web">
+    <div class="webIn">
+        <ul>
+            <li>
+                <a href="./?c=index">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=ranking&a=ranking">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=userlist">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=userinfo">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=logout">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--手机版的底部 end-->
+
+<!-- 版权 -->
+<div id="bb" style="text-align:center;">
+©1guanli.com 版权所有  京ICP备13049583号-6
+</div>
+
+<!--cnzz统计代码-->
+<div style="display:none">
+<script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+</div>
+<!--cnzz统计代码-->
+
+<!--禁止查看源代码-->
+<script> 
+document.oncontextmenu=new Function("return false"); 
+//document.onselectstart=new Function("return false"); 
+event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!-- 
+//平台、设备和操作系统
+var system ={
+win : false,
+mac : false,
+xll : false
+};
+//检测平台
+var p = navigator.platform;
+system.win = p.indexOf("Win") == 0;
+system.mac = p.indexOf("Mac") == 0;
+system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+//跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+if(system.win||system.mac||system.xll){
+    
+}else{
+    var oldHeight = document.body.scrollHeight; 
+    $(window).resize(function(){
+        var newHeight = document.body.scrollHeight; 
+        if(oldHeight<600 && newHeight<600)
+        {
+            if(oldHeight==newHeight)
+            {
+                $('.web').show();
+            }
+            else{
+                $('.web').hide();
+            }  
+        }
+    });
+}
+-->
+</script>    
+</body>
+</html>
+<script type="text/javascript" src="/static/kindergarten/js/list.js"></script>
+<script type="text/javascript">
+var timeType = "";
+if(timeType)
+{
+    $("select[name='timeType']").val(timeType);
+}
+function checkform()
+{
+    if($("input[name='startime']").val()==$("input[name='endtime']").val())
+    {
+        return false;
+    }
+    else if($("input[name='startime']").val()>$("input[name='endtime']").val())
+    {
+        alert("请正确选择时间段");
+        return false;
+    }
+    return true;
+}
+</script>

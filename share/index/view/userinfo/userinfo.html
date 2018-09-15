@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>分享家管理系统-个人信息</title>
+    <link rel="stylesheet" href="/static/share/css/index.css">
+    <script type="text/javascript" src="/static/share/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+    <link rel="stylesheet" href="/static/share/css/index.css">
+    <script type="text/javascript" src="/static/share/js/jquery-1.7.2.min.js"></script>
+
+    <!-- pc端头部 begin -->
+    <div class="header_pc">
+        <div class="hdIn">
+            <div class="logo"><img src="/static/share/images/logo_pc.png" alt="" width="100"></div>
+            <div class="hdright">
+                <ul>
+                    <li class="home"><a href="{:url('index/Right/right')}" target='right'>首页</a></li>
+                    <li class="home">{$Request.session.name}分享家欢迎您！ </li>
+                    <li><a href="{:url('index/Touppwd/touppwd')}" target='right'>修改密码</a></li>
+                    <li><a href="{:url('index/Right/logout')}" target='right'>退出</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!-- pc端头部 end -->
+
+
+    <!-- 移动端头部 begin -->
+    <div class="header_yidong">
+        <a href="#" class="hyd_l"><img src="/static/share/images/logo_yd.png" alt=""></a>
+        <a href="#" class="hyd_r"><img src="/static/share/images/logoyd_r.png" alt=""></a>
+
+    </div>
+    <!-- 移动端头部 end -->
+    <!-- 奖扣 begin -->
+    <div class="jiangkou">
+        <div class="jkIn">
+            <div class="listBtn">
+                <h4>个人信息</h4>
+                <a href="javascript:history.go(-1);" class="add">返回</a>
+                <a href="{:url('index/Touppwd/touppwd')}" class="add">修改密码</a>
+            </div>
+        </div>
+        <!-- 加分申请单 begin -->
+        <div class="jiaTab">
+            <form action="{:url('integraladd')}" method="post" onsubmit="return checkform()">
+                <div class="jt">
+                    <span>账号：</span>
+                    <span>{$Request.session.account}</span>
+                    
+                
+                </div>
+                {volist name="owner_list" id="info" }  
+                <div class="jt">
+                    <span>业主姓名：</span>
+                    <input type="text" name="linkman" id="linkman"   class="editable-input" value="{$info.owner}"  >
+                  
+                
+                </div>
+                <div class="jt">
+                    <span>手机号：</span>
+                    <input type="text" name="linkman_phone" id="linkman_phone"    class="editable-input" value="{$info.phone}"  onfocus="inputFocus()"  > 
+                 
+                   
+                </div>
+
+                <div class="jt">
+                    <span>身份证号：</span>
+                    
+                    <input type="text" name="id_card" id="id_card"    class="editable-input" value="{$info.id_card}"   onfocus="inputFocus()"> 
+                </div>
+
+                {/volist}
+          
+                <div class="jt">
+                    <span>说明：</span>
+                    
+                    <p>请认真填写您的个人信息，推荐成功，业主本人凭所填写的业主的账号，身份证，电话到售楼处领取推荐的现金奖励。</br>
+                             如有疑问请拨打电话：0315-5252222</br>
+                            注：信息填写错误，账号将作废，请认真填写！</p>  
+                 
+                </div>
+                <div class="jt">
+                    <div align="center"><input type="submit" id="submitInput" value="提交" class="abutton"></div>
+                </div>
+        
+        </form>
+        <!-- 加分申请单 end -->
+        </div>  
+    </div>
+    <!-- 奖扣 begin -->
+
+    <!--手机版的底部 begin-->
+    <div class="web">
+        <div class="webIn0">
+			<ul>
+				<li>
+					<a href="{:url('index/Right/right')}">
+                    <img src="/static/share/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Query/query')}">
+                    <img src="/static/share/images/nav_02_h.png" alt="">
+                    <p>查询</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Order/order')}">
+                    <img src="/static/share/images/nav_03_h.png" alt="" >
+                    <p>推荐</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/share/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Right/logout')}">
+                    <img src="/static/share/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+				</li>
+			</ul>
+		</div>
+		<div class="webIn1">
+			<ul>
+				<li>
+					<a href="{:url('index/Verifylist/verifylist')}">
+                    <img src="/static/share/images/nav_01_h.png" alt="">
+                    <p>核实</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Visitlist/visitlist')}">
+                    <img src="/static/share/images/nav_02_h.png" alt="">
+                    <p>回访</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Receivelist/receivelist')}">
+                    <img src="/static/share/images/nav_03_h.png" alt="" >
+                    <p>查收</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/share/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Right/logout')}">
+                    <img src="/static/share/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+				</li>
+			</ul>
+		</div>
+		<div class="webIn2">
+			<ul>
+				<li>
+					<a href="{:url('index/Right/right')}">
+                    <img src="/static/share/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Agentidealist/agentidealist')}">
+                    <img src="/static/share/images/nav_02_h.png" alt="">
+                    <p>决策</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Agentlist/agentlist')}">
+                    <img src="/static/share/images/nav_03_h.png" alt="" >
+                    <p>查询</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Userinfo/userinfo')}">
+                    <img src="/static/share/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+				</li>
+				<li>
+					<a href="{:url('index/Right/logout')}">
+                    <img src="/static/share/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+				</li>
+			</ul>
+		</div>
+        </div>
+        <!--手机版的底部 end-->
+
+    <!-- 版权 -->
+    <div id="bb" style="text-align:center;">
+        ©1guanli.com 版权所有 京ICP备13049583号-6
+    </div>
+
+    <!--cnzz统计代码-->
+    <div style="display:none">
+        <script language="JavaScript">
+            if ({ $Request.session.role } == "3") {
+                $("#zhiwu").find("option")[1].remove();
+            }
+
+        </script>
+    </div>
+    <!--cnzz统计代码-->
+
+    <!--禁止查看源代码-->
+    <script>
+
+    var account="{$Request.session.account}";
+	var role="{$Request.session.role}";
+		
+
+if(role == "2"){
+
+	$(".webIn0").show();
+
+	
+}
+else if(role =="1"){
+	
+	$(".webIn1").show();
+
+}
+else if(role =="0"){
+
+	$(".webIn2").show();
+}
+
+
+        document.oncontextmenu = new Function("return false");
+        //document.onselectstart=new Function("return false"); 
+        event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+
+//平台、设备和操作系统
+var system = {
+            win: false,
+            mac: false,
+            xll: false
+        };
+        //检测平台
+        var p = navigator.platform;
+        system.win = p.indexOf("Win") == 0;
+        system.mac = p.indexOf("Mac") == 0;
+        system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+        //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+        if (system.win || system.mac || system.xll) {
+
+        } else {
+            var oldHeight = document.body.scrollHeight;
+            $(window).resize(function () {
+                var newHeight = document.body.scrollHeight;
+                if (oldHeight < 600 && newHeight < 600) {
+                    if (oldHeight == newHeight) {
+                        $('.web').show();
+                    }
+                    else {
+                        $('.web').hide();
+                    }
+                }
+            });
+        }
+        
+
+    </script>
+
+</body>
+
+</html>
+
+<script type="text/javascript" src="/static/share/js/list.js"></script>
+<script type="text/javascript" src="/static/share/script/qufenxiang.js"></script>
+<script type="text/javascript" src="/static/share/script/integral_add.js"></script>
+<script type="text/javascript">
+    var parkjiaselect = "";
+    var parkjianselect = "";
+
+
+
+ //h5 wap 键盘遮挡input 框，解决方案
+function inputFocus(){
+	setTimeout(function(){  
+        window.scrollTo(0,document.body.clientHeight/10);  
+    }, 500); 
+}   
+
+</script>

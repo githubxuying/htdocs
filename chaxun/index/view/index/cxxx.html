@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>查询详细</title>
+	<link href="http://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+	<link href="/static/chaxun/cxxx/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="/static/chaxun/cxxx/css/htmleaf-demo.css">
+	<link href="/static/chaxun/cxxx/css/jquery.decapitate.css" rel="stylesheet" type="text/css" />
+  	<link href="/static/chaxun/cxxx/css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div class="htmleaf-container">
+	<!--
+		<header class="htmleaf-header">
+			<h1>业主查询信息详情页 <span>本系统可查询业主一年参与活动详情及积分</span></h1>
+			<div class="htmleaf-links">
+				<a class="htmleaf-icon icon-htmleaf-home-outline" href="http://www.htmleaf.com/" title="jQuery之家" target="_blank"><span> jQuery之家</span></a>
+				<a class="htmleaf-icon icon-htmleaf-arrow-forward-outline" href="http://www.htmleaf.com/jQuery/Table/201703064387.html" title="返回下载页" target="_blank"><span> 返回下载页</span></a>
+			</div>
+		</header>
+		-->
+		<table id="element-table" class="table table-bordered">
+		    <thead>
+		      <tr>
+		        <th>会员姓名</th>
+		        <th>活动名称</th>
+		        <th>积分变动</th>
+				<th>活动时间</th>
+		      </tr>
+		    </thead>
+		    <tbody>
+		
+			{if count($list)>0}
+				     {foreach $list  as $user}
+		      <tr><td>{$user.member_name}</td><td>{$user.active_name}</td><td>{$user.change_integral}</td><td>{$user.active_time}</td></tr>
+			
+		         {/foreach}
+            {else /}
+              <tr><td></td><td>无</td><td>无</td><td>无</td></tr>
+			  
+            {/if}
+			
+		     
+		    </tbody>
+		  </table>
+
+<!--
+<div style="margin: 0px;height: 580px;width:1903px;"> 
+    <iframe src="time_.html" frameborder="0" scrolling="no" height="600" width="1903px"> 
+    </iframe> 
+</div> 
+-->
+
+
+</div>	
+
+<iframe name="web" width="100%" frameborder=0 height="600" src="{:url('time_cxxx')}" id="web" onload="this.height=web.document.body.scrollHeight+500" ></iframe>  
+‍
+
+
+	<script src="/static/chaxun/cxxx/js/jquery.min.js" type="text/javascript"></script>
+	<script>window.jQuery || document.write('<script src="/static/chaxun/cxxx/js/jquery-1.11.0.min.js"><\/script>')</script>
+	<script src="/static/chaxun/cxxx/js/bootstrap-affix.js"></script>
+  	<script src="/static/chaxun/cxxx/js/jquery.decapitate.js"></script>
+  	<script type="text/javascript">
+  		$(document).ready(function() {
+		      $('table').decapitate();
+		    });
+  	</script>
+</body>
+</html>

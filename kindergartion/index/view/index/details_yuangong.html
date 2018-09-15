@@ -1,0 +1,611 @@
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>明德幼儿园积分管理系统-明细列表</title>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/jquery-1.4.2.min.js"></script>
+</head>
+<body>
+<div id="overlay"></div> 
+<link rel="stylesheet" href="/static/kindergarten/css/index.css">
+<script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+<!-- pc端头部 begin -->
+<div class="header_pc">
+	<div class="hdIn">
+		<div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+		<div class="hdright">
+			<ul>
+				<li class="home"><a href="./?c=index" target='right'>首页</a></li>
+				<li class="home">欢迎您！河北省唐山市丰润区悦城明德幼儿园 王秀红</li>
+				<li><a href="{:url('touppwd')}" target='right'>修改密码</a></li>
+				<li><a href="./?c=index&a=logout" target='right'>退出</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- pc端头部 end -->
+
+
+<!-- 移动端头部 begin -->
+<div class="header_yidong">
+	<a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+	<a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+</div>
+<!-- 移动端头部 end -->
+    
+    <div class="list">
+        <div class="listBtn">
+            <h4>积分明细</h4>
+            <a href="javascript:history.go(-1);" class="add home">返回</a>
+            <div class="rili">
+            <form action="./?c=integral&a=details" method="post" onsubmit="return checkform()">
+            <input type="hidden" name="uid" value="10866">
+                <div class="marginright home">
+                    <select name="timeType">
+                        <option value="applytime">申请时间</option>
+                        <option value="addtime">审核时间</option>
+                    </select>
+                </div>
+                <div><input type="text" name="startime" onclick="WdatePicker()" size="10" value=""></div><span> ～ </span>
+                <div><input type="text" name="endtime" onclick="WdatePicker()" size="10" value=""></div>
+                <div class="rilisub"><input type="submit" value="搜索"></div>
+            </form> 
+            </div>
+        </div>
+        <div class="listTab">
+            <table id="tab" width="200" border="0" cellspacing="0" cellpadding="0">
+                <tr class="tr01"> 
+                    <td>编号</td>
+                    <td>申请/下达人</td>
+                    <td>申请/下达项</td>
+                    <td>描述</td>
+                    <td>分值</td>
+                    <td>申请时间</td>
+                    <td>审核人</td>
+                    <td>审核时间</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">1</td>
+                    <td>王鑫玥</td>
+                    <td>同事间互帮互助</td>
+                    <td>周六白洋淀一日游迎接王园并帮助王园给大家拎西红柿</td>     
+                    <td align="center">
+                        1
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-21 19:01</td>
+                    <td>李晶</td>
+                    <td>2017-05-21 20:18</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">2</td>
+                    <td>王鑫玥</td>
+                    <td>为本岗位人员分享有价值的工作方法</td>
+                    <td>本周本班新来了一位保健医老师，为她介绍一日流程还有工作方法</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-21 19:05</td>
+                    <td>李晶</td>
+                    <td>2017-05-21 20:14</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">3</td>
+                    <td>王鑫玥</td>
+                    <td>每周本岗位管辖范围内硬件设施摆放符合园所</td>
+                    <td>本周本岗位管辖范围内硬件设施摆放符合园所标准</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-21 19:07</td>
+                    <td>李晶</td>
+                    <td>2017-05-21 20:13</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">4</td>
+                    <td>王鑫玥</td>
+                    <td>每周本岗位管辖范围内物品干净清洁、无污渍</td>
+                    <td>本周本岗位管辖范围内物品干净清洁，无污渍，无垃圾</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-21 19:08</td>
+                    <td>李晶</td>
+                    <td>2017-05-21 20:13</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">5</td>
+                    <td>王鑫玥</td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>本周本岗位管辖范围按时按质认真完成卫生消毒工作</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-21 19:09</td>
+                    <td>李晶</td>
+                    <td>2017-05-21 20:13</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">6</td>
+                    <td>王鑫玥</td>
+                    <td>每周本岗位管辖范围内的地面保持清洁、干爽</td>
+                    <td>本周本岗位管辖范围内的地面保持清洁干爽</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-21 19:09</td>
+                    <td>李晶</td>
+                    <td>2017-05-21 20:13</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">7</td>
+                    <td>王鑫玥</td>
+                    <td>本岗位各项文本记录清晰、内容完整、无破损</td>
+                    <td>本周本岗位文本记录清晰，内容完整，无破损，</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-21 19:12</td>
+                    <td>李晶</td>
+                    <td>2017-05-21 20:12</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">8</td>
+                    <td>王鑫玥</td>
+                    <td>每月班组成员配合默契，无矛盾现象发生</td>
+                    <td>本周本班组成员配合默契，无矛盾现象发生</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-21 19:13</td>
+                    <td>李晶</td>
+                    <td>2017-05-21 20:12</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">9</td>
+                    <td>王鑫玥</td>
+                    <td>所辖工作区域范围内无乱贴纸张现象</td>
+                    <td>本周所辖工作区域范围内无乱贴纸张现象</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-21 19:14</td>
+                    <td>李晶</td>
+                    <td>2017-05-21 20:12</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">10</td>
+                    <td>王鑫玥</td>
+                    <td>每周按时按质完成工作计划</td>
+                    <td>本周按时按质认真完成工作计划</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-21 19:15</td>
+                    <td>李晶</td>
+                    <td>2017-05-21 20:12</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">11</td>
+                    <td>王鑫玥</td>
+                    <td>每周按时按质开展户外活动</td>
+                    <td>本周按时按质开展户外活动</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-21 19:15</td>
+                    <td>李晶</td>
+                    <td>2017-05-21 20:12</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">12</td>
+                    <td>王鑫玥</td>
+                    <td>每周本岗位管辖范围内硬件设施摆放符合园所</td>
+                    <td>本周本岗位管辖范围内硬件设施摆放符合园所标准</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:33</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 13:02</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">13</td>
+                    <td>王鑫玥</td>
+                    <td>每周本岗位管辖范围内物品干净清洁、无污渍</td>
+                    <td>本周本岗位管辖范围内物品干净整洁，无污渍，无垃圾</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:34</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 13:02</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">14</td>
+                    <td>王鑫玥</td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>本周本岗位管辖范围按时按质认真完成卫生消毒工作</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:35</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 13:01</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">15</td>
+                    <td>王鑫玥</td>
+                    <td>每周本岗位管辖范围内的地面保持清洁、干爽</td>
+                    <td>本周本岗位管辖范围内的地面保持清洁干爽</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:35</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 13:01</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">16</td>
+                    <td>王鑫玥</td>
+                    <td>每月本岗位管辖范围内无卫生死角</td>
+                    <td>本周本岗位管辖范围内卫生无死角</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:36</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 13:01</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">17</td>
+                    <td>王鑫玥</td>
+                    <td>服务工作得到家长认可，获得表扬（口头表扬</td>
+                    <td>本周的亲子母亲节活动获得张予诺妈妈的表扬，截图发至微信群</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:37</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 13:01</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">18</td>
+                    <td>王鑫玥</td>
+                    <td>每月无违反园所规章制度的行为</td>
+                    <td>本周无违反园所规章制度的行为</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:40</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 12:59</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">19</td>
+                    <td>王鑫玥</td>
+                    <td>本岗位各项文本记录清晰、内容完整、无破损</td>
+                    <td>本周的班级里各项文本内容完整记录清晰无破损</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:41</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 12:59</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">20</td>
+                    <td>王鑫玥</td>
+                    <td>每月班组成员配合默契，无矛盾现象发生</td>
+                    <td>本周本班成员配合默契，无矛盾现象发生</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:42</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 12:59</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">21</td>
+                    <td>王鑫玥</td>
+                    <td>所辖工作区域范围内无乱贴纸张现象</td>
+                    <td>本周所辖工作区域范围内无乱贴纸张现象</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:43</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 12:59</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">22</td>
+                    <td>王鑫玥</td>
+                    <td>每周按时提交各类文案</td>
+                    <td>本周的教案周五按时上交完毕</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:44</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 12:59</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">23</td>
+                    <td>王鑫玥</td>
+                    <td>每周按时按质完成工作计划</td>
+                    <td>本周按时按质完成工作计划</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:45</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 12:59</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">24</td>
+                    <td>王鑫玥</td>
+                    <td>每周按时按质开展户外活动</td>
+                    <td>本周按时按质开展户外活动</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:46</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 12:59</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">25</td>
+                    <td>王鑫玥</td>
+                    <td>按时按质完成园所大型活动</td>
+                    <td>本周五按时按质完成了亲子母亲节活动</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:49</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 12:59</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">26</td>
+                    <td>王鑫玥</td>
+                    <td>服务工作得到家长认可，获得表扬（口头表扬</td>
+                    <td>本周亲子母亲节活动获得马子骁妈妈的感谢与支持</td>     
+                    <td align="center">
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-13 19:57</td>
+                    <td>李晶</td>
+                    <td>2017-05-14 12:58</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">27</td>
+                    <td>王鑫玥</td>
+                    <td>完成领导临时性工作安排一次</td>
+                    <td>5.10下午郭老师去舞蹈课配课，我积极主动的完成了，配班下午的全部工作。</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-10 19:49</td>
+                    <td>李晶</td>
+                    <td>2017-05-10 21:44</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">28</td>
+                    <td>王鑫玥</td>
+                    <td>积极参加继续教育类培训</td>
+                    <td>5月10日晚积极参加六一亲子团体操的录制</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-10 19:36</td>
+                    <td>李晶</td>
+                    <td>2017-05-10 21:36</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">29</td>
+                    <td>王鑫玥</td>
+                    <td>积极参加继续教育类培训</td>
+                    <td>5.10积极参加六一节目的排练并主动组织编排节目</td>     
+                    <td align="center">
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-10 19:40</td>
+                    <td>李晶</td>
+                    <td>2017-05-10 21:35</td>
+                </tr>
+                                                <tr>
+                                
+                    <td align="center">30</td>
+                    <td>王鑫玥</td>
+                    <td>好人好事</td>
+                    <td>5.10上午在三楼楼梯将小四班掉落墙饰粘贴好。</td>     
+                    <td align="center">
+                        1
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>   
+                    <td>2017-05-10 19:46</td>
+                    <td>李晶</td>
+                    <td>2017-05-10 21:29</td>
+                </tr>
+                                                <tr><td colspan="8" align="center">总数：93&nbsp;&nbsp;&nbsp页数：1/4&nbsp;&nbsp;&nbsp;&nbsp;首页&nbsp;上一页&nbsp;&nbsp;1&nbsp;<a href="?c=integral&a=details&uid=10866&page=2">[2]</a><a href="?c=integral&a=details&uid=10866&page=3">[3]</a><a href="?c=integral&a=details&uid=10866&page=4">[4]</a>&nbsp;<a href="?c=integral&a=details&uid=10866&page=2">下一页</a>&nbsp;<a href="?c=integral&a=details&uid=10866&page=4">尾页</a></td></tr>
+                            </table>
+        </div>
+    </div>
+
+<!--手机版的底部 begin-->
+<div class="web">
+    <div class="webIn">
+        <ul>
+            <li>
+                <a href="./?c=index">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=ranking&a=ranking">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=userlist">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=userinfo">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=logout">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--手机版的底部 end-->
+
+<!-- 版权 -->
+<div id="bb" style="text-align:center;">
+©1guanli.com 版权所有  京ICP备13049583号-6
+</div>
+
+<!--cnzz统计代码-->
+<div style="display:none">
+<script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+</div>
+<!--cnzz统计代码-->
+
+<!--禁止查看源代码-->
+<script> 
+document.oncontextmenu=new Function("return false"); 
+//document.onselectstart=new Function("return false"); 
+event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!-- 
+//平台、设备和操作系统
+var system ={
+win : false,
+mac : false,
+xll : false
+};
+//检测平台
+var p = navigator.platform;
+system.win = p.indexOf("Win") == 0;
+system.mac = p.indexOf("Mac") == 0;
+system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+//跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+if(system.win||system.mac||system.xll){
+    
+}else{
+    var oldHeight = document.body.scrollHeight; 
+    $(window).resize(function(){
+        var newHeight = document.body.scrollHeight; 
+        if(oldHeight<600 && newHeight<600)
+        {
+            if(oldHeight==newHeight)
+            {
+                $('.web').show();
+            }
+            else{
+                $('.web').hide();
+            }  
+        }
+    });
+}
+-->
+</script>    
+</body>
+</html>
+<script type="text/javascript" src="/static/kindergarten/js/list.js"></script>
+<script type="text/javascript">
+var timeType = "";
+if(timeType)
+{
+    $("select[name='timeType']").val(timeType);
+}
+function checkform()
+{
+    if($("input[name='startime']").val()==$("input[name='endtime']").val())
+    {
+        return false;
+    }
+    else if($("input[name='startime']").val()>$("input[name='endtime']").val())
+    {
+        alert("请正确选择时间段");
+        return false;
+    }
+    return true;
+}
+</script>

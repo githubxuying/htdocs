@@ -1,0 +1,833 @@
+ 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <title>明德幼儿园积分管理系统-我的审核记录</title>
+    <link rel="stylesheet" href="/static/kindergarten/css/index.css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/tuo.js"></script>
+    <link href="/static/kindergarten/css/tuo.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/My97DatePicker/WdatePicker.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/kindergarten/js/jquery-1.4.2.min.js"></script>
+</head>
+<body>
+<div id="overlay"></div> 
+<link rel="stylesheet" href="/static/kindergarten/css/index.css">
+<script type="text/javascript" src="/static/kindergarten/js/jquery-1.7.2.min.js"></script>
+
+<!-- pc端头部 begin -->
+<div class="header_pc">
+	<div class="hdIn">
+		<div class="logo"><img src="/static/kindergarten/images/logo_pc.png" alt="" width="100"></div>
+		<div class="hdright">
+			<ul>
+				<li class="home"><a href="./?c=index" target='right'>首页</a></li>
+				<li class="home">欢迎您！河北省唐山市丰润区悦城明德幼儿园 王秀红</li>
+				<li><a href="{:url('touppwd')}" target='right'>修改密码</a></li>
+				<li><a href="./?c=index&a=logout" target='right'>退出</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- pc端头部 end -->
+
+
+<!-- 移动端头部 begin -->
+<div class="header_yidong">
+	<a href="#" class="hyd_l"><img src="/static/kindergarten/images/logo_yd.png" alt=""></a>
+	<a href="#" class="hyd_r"><img src="/static/kindergarten/images/logoyd_r.png" alt=""></a>
+
+</div>
+<!-- 移动端头部 end -->
+    <div class="list">
+        <div class="listBtn">
+            <h4 class="home">审核记录</h4>
+            <a href="javascript:history.go(-1);" class="add home">返回</a>
+                            <a href="./?c=integral&a=myVerify&man=leader" class="add home" id="leader">其他审核</a>
+                <a href="./?c=integral&a=myVerify&man=my" class="add home" id="my">我的审核</a>
+                <a href="./?c=integral&a=myVerify" class="add home" id="all">全部审核</a>
+                <a href="./?c=integral&a=myVerify&man=bmy&title=好人好事" class="add">好人好事</a>
+                <div class="rili">
+                    <div><input type="text" name="sname" id="sname" value="" size="6"></div>
+                    <div class="rilisub"><input type="button" value="搜索" class="add" onclick="checkform()"></div>
+                </div>
+                    </div>
+        <div class="listTab">
+            <table id="tab" width="200" border="0" cellspacing="0" cellpadding="0">
+                <tr class="tr01" align="center"> 
+                    <td>编号</td>
+                    <td>申请人</td>
+                    <td>被申请人</td>
+                    <td>申请项</td>
+                    <td>描述</td>
+                                        <td>分值</td>
+                                        <td>审核人</td>
+                                        <td>审核时间</td>
+                    <td>操作</td>
+                </tr>
+                                                <tr id="tr532238">
+                                    <td align="center">1</td>
+                    <td>刘娜</td>
+                    <td>刘娜</td>
+                    <td>好人好事</td>
+                    <td>5月22日晚上送园车时，抱幼儿上车，看到一名幼儿鞋子穿反，及时更正过来</td> 
+                     
+                    <td>
+                        1
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>李晶</td>  
+                     
+                    <td>2017-05-22 20:43</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(532238,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr532237">
+                                    <td align="center">2</td>
+                    <td>王田甜</td>
+                    <td>王田甜</td>
+                    <td>好人好事</td>
+                    <td>5.22入园期间在二层厕所门口拾到墙上装饰，主动贴回原位</td> 
+                     
+                    <td>
+                        1
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>李晶</td>  
+                     
+                    <td>2017-05-22 20:42</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(532237,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr532236">
+                                    <td align="center">3</td>
+                    <td>张婷婷</td>
+                    <td>张婷婷</td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>认真完成消毒工作</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-22 20:42</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(532236,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr532235">
+                                    <td align="center">4</td>
+                    <td>王田甜</td>
+                    <td>王田甜</td>
+                    <td>服务工作得到家长认可，获得表扬（口头表扬</td>
+                    <td>5.22微信得到齐禹涵姥姥表扬</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>李晶</td>  
+                     
+                    <td>2017-05-22 20:42</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(532235,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr532234">
+                                    <td align="center">5</td>
+                    <td>杨馨怡</td>
+                    <td>杨馨怡</td>
+                    <td>好人好事</td>
+                    <td>5月22日中午发现二楼厕所灯未关 及时关闭</td> 
+                     
+                    <td>
+                        1
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-22 20:38</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(532234,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr532233">
+                                    <td align="center">6</td>
+                    <td>王田甜</td>
+                    <td>王田甜</td>
+                    <td>好人好事</td>
+                    <td>5.22在为幼儿铺床时，在许祎宸袋子中发现饮品，主动交给妈妈</td> 
+                     
+                    <td>
+                        1
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-22 20:38</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(532233,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr532230">
+                                    <td align="center">7</td>
+                    <td>刘圆</td>
+                    <td>刘圆</td>
+                    <td>同事间互帮互助</td>
+                    <td>5月22下午放学，帮助中一幼儿吹干衣服</td> 
+                     
+                    <td>
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-22 20:38</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(532230,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529670">
+                                    <td align="center">8</td>
+                    <td>王思铭</td>
+                    <td>王思铭</td>
+                    <td>好人好事</td>
+                    <td>2017年5月19日上午看到三楼楼梯墙创掉落 即使粘上</td> 
+                     
+                    <td>
+                        1
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529670,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529669">
+                                    <td align="center">9</td>
+                    <td>王玉莹</td>
+                    <td>王玉莹</td>
+                    <td>好人好事</td>
+                    <td>2017年5月19日上午做卫生时发现一楼墙饰掉落，及时粘贴。</td> 
+                     
+                    <td>
+                        1
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529669,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529667">
+                                    <td align="center">10</td>
+                    <td>郑秀玉</td>
+                    <td>郑秀玉</td>
+                    <td>服务工作得到家长认可，获得表扬（口头表扬</td>
+                    <td>5月18日晚上10点左右获得杨宁煕妈妈的表扬。</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529667,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529665">
+                                    <td align="center">11</td>
+                    <td>徐亚凤</td>
+                    <td>徐亚凤</td>
+                    <td>服务工作得到家长认可，获得表扬（口头表扬</td>
+                    <td>5月18日晚上杨宁熙妈妈发朋友圈表扬托一班的老师</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529665,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529663">
+                                    <td align="center">12</td>
+                    <td>肖芳</td>
+                    <td>肖芳</td>
+                    <td>每周本岗位管辖范围内硬件设施摆放符合园所</td>
+                    <td>本周设施摆放符合标准</td> 
+                     
+                    <td>
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529663,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529661">
+                                    <td align="center">13</td>
+                    <td>赵莉</td>
+                    <td>赵莉</td>
+                    <td>每周按时提交各类文案</td>
+                    <td>5月19日，本周按时提交各类文案</td> 
+                     
+                    <td>
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529661,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529660">
+                                    <td align="center">14</td>
+                    <td>肖芳</td>
+                    <td>肖芳</td>
+                    <td>每周本岗位管辖范围内物品干净清洁、无污渍</td>
+                    <td>本周本班物品干净清洁</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529660,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529659">
+                                    <td align="center">15</td>
+                    <td>赵莉</td>
+                    <td>赵莉</td>
+                    <td>每周按时按质完成工作计划</td>
+                    <td>5月19日本周按时按质完成工作计划</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529659,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529657">
+                                    <td align="center">16</td>
+                    <td>赵莉</td>
+                    <td>赵莉</td>
+                    <td>每周按时按质开展户外活动</td>
+                    <td>5月19日本周按时按质开展户外活动</td> 
+                     
+                    <td>
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529657,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529656">
+                                    <td align="center">17</td>
+                    <td>赵莉</td>
+                    <td>赵莉</td>
+                    <td>本岗位各项文本记录清晰、内容完整、无破损</td>
+                    <td>5月19日本岗位各项文本记录清晰，内容完整，无破损</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529656,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529654">
+                                    <td align="center">18</td>
+                    <td>赵莉</td>
+                    <td>赵莉</td>
+                    <td>所辖工作区域范围内无乱贴纸张现象</td>
+                    <td>5月19日，工作区域范围内无乱贴纸张现象</td> 
+                     
+                    <td>
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529654,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529653">
+                                    <td align="center">19</td>
+                    <td>赵莉</td>
+                    <td>赵莉</td>
+                    <td>每周本岗位管辖范围内物品干净清洁、无污渍</td>
+                    <td>5月19日本周本岗位范围内物品干净清洁，无污渍，无垃圾</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:48</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529653,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529651">
+                                    <td align="center">20</td>
+                    <td>赵莉</td>
+                    <td>赵莉</td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>5月19日本周本岗位范围按时按质认真完成卫生消毒工作</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:47</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529651,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529650">
+                                    <td align="center">21</td>
+                    <td>赵莉</td>
+                    <td>赵莉</td>
+                    <td>每周本岗位管辖范围内的地面保持清洁、干爽</td>
+                    <td>5月19日本周本岗位范围内的地面保持清洁，干爽</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:47</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529650,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529649">
+                                    <td align="center">22</td>
+                    <td>赵莉</td>
+                    <td>赵莉</td>
+                    <td>每周本岗位管辖范围内硬件设施摆放符合园所</td>
+                    <td>5月19日本周本岗位范围内硬件设施摆放符合园所标准</td> 
+                     
+                    <td>
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:47</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529649,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529648">
+                                    <td align="center">23</td>
+                    <td>徐亚凤</td>
+                    <td>徐亚凤</td>
+                    <td>每周按时完成本岗工作任务（由上级统一加分</td>
+                    <td>本周按时完成本岗工作任务</td> 
+                     
+                    <td>
+                        5
+                        <img src='/static/kindergarten/images/face/haixiu.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:47</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529648,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529647">
+                                    <td align="center">24</td>
+                    <td>肖芳</td>
+                    <td>肖芳</td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>本周按时完成消毒工作</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:47</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529647,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529646">
+                                    <td align="center">25</td>
+                    <td>徐亚凤</td>
+                    <td>徐亚凤</td>
+                    <td>每周本岗位管辖范围内硬件设施摆放符合园所</td>
+                    <td>本周本岗位管辖范围内硬件设施摆放符合园所标准</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:47</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529646,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529645">
+                                    <td align="center">26</td>
+                    <td>徐亚凤</td>
+                    <td>徐亚凤</td>
+                    <td>每周本岗位管辖范围内物品干净清洁、无污渍</td>
+                    <td>本周本岗位管辖范围内物品干净清洁，无污渍，无垃圾</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:47</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529645,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529644">
+                                    <td align="center">27</td>
+                    <td>肖芳</td>
+                    <td>肖芳</td>
+                    <td>每周本岗位管辖范围内的地面保持清洁、干爽</td>
+                    <td>本周地面清洁干爽</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:47</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529644,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529643">
+                                    <td align="center">28</td>
+                    <td>徐亚凤</td>
+                    <td>徐亚凤</td>
+                    <td>每周本岗位管辖范围按时按质认真完成卫生消</td>
+                    <td>本周本岗位管辖范围按时按质认真完成卫生消毒工作</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:47</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529643,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529642">
+                                    <td align="center">29</td>
+                    <td>肖芳</td>
+                    <td>肖芳</td>
+                    <td>每月本岗位管辖范围内无卫生死角</td>
+                    <td>本周卫生无死角</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:47</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529642,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr id="tr529641">
+                                    <td align="center">30</td>
+                    <td>徐亚凤</td>
+                    <td>徐亚凤</td>
+                    <td>每周本岗位管辖范围内的地面保持清洁、干爽</td>
+                    <td>本周本岗位管辖范围内的地面保持清洁，干爽</td> 
+                     
+                    <td>
+                        10
+                        <img src='/static/kindergarten/images/face/ye.gif' class='faceimg'>
+                    </td>  
+                        
+                    <td>王秀红</td>  
+                     
+                    <td>2017-05-21 20:47</td>
+                    <td>
+                         
+                            <a href="javascript:cancel(529641,'shen')" onclick="return myConfirm1()">取消</a> 
+                                            </td>
+                </tr>
+                                                <tr><td colspan="9" align="center">总数：1551&nbsp;&nbsp;&nbsp页数：1/52&nbsp;&nbsp;&nbsp;&nbsp;首页&nbsp;上一页&nbsp;&nbsp;1&nbsp;<a href="?c=integral&a=myVerify&page=2">[2]</a><a href="?c=integral&a=myVerify&page=3">[3]</a><a href="?c=integral&a=myVerify&page=4">[4]</a><a href="?c=integral&a=myVerify&page=5">[5]</a><a href="?c=integral&a=myVerify&page=6">[6]</a><a href="?c=integral&a=myVerify&page=7">[7]</a><a href="?c=integral&a=myVerify&page=8">[8]</a><a href="?c=integral&a=myVerify&page=9">[9]</a><a href="?c=integral&a=myVerify&page=10">[10]</a>&nbsp;<a href="?c=integral&a=myVerify&page=2">下一页</a>&nbsp;<a href="?c=integral&a=myVerify&page=52">尾页</a></td></tr>
+                            </table>
+        </div>
+        
+    </div>
+
+
+<!--手机版的底部 begin-->
+<div class="web">
+    <div class="webIn">
+        <ul>
+            <li>
+                <a href="./?c=index">
+                    <img src="/static/kindergarten/images/nav_01_h.png" alt="">
+                    <p>首页</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=ranking&a=ranking">
+                    <img src="/static/kindergarten/images/nav_02_h.png" alt="">
+                    <p>月度排行</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=userlist">
+                    <img src="/static/kindergarten/images/nav_03_h.png" alt="" >
+                    <p>员工名单</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=userinfo">
+                    <img src="/static/kindergarten/images/nav_04_h.png" alt="" >
+                    <p>个人信息</p>
+                </a>
+            </li>
+            <li>
+                <a href="./?c=index&a=logout">
+                    <img src="/static/kindergarten/images/nav_05_h.png" alt="" >
+                    <p>退出</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--手机版的底部 end-->
+
+<!-- 版权 -->
+<div id="bb" style="text-align:center;">
+©1guanli.com 版权所有  京ICP备13049583号-6
+</div>
+
+<!--cnzz统计代码-->
+<div style="display:none">
+<script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+</div>
+<!--cnzz统计代码-->
+
+<!--禁止查看源代码-->
+<script> 
+document.oncontextmenu=new Function("return false"); 
+//document.onselectstart=new Function("return false"); 
+event.ctrlKey = new Function("return false;");
+
+//手机监听键盘事件
+<!-- 
+//平台、设备和操作系统
+var system ={
+win : false,
+mac : false,
+xll : false
+};
+//检测平台
+var p = navigator.platform;
+system.win = p.indexOf("Win") == 0;
+system.mac = p.indexOf("Mac") == 0;
+system.x11 = (p == "X11") || (p.indexOf("Linux") == 0);
+//跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+if(system.win||system.mac||system.xll){
+    
+}else{
+    var oldHeight = document.body.scrollHeight; 
+    $(window).resize(function(){
+        var newHeight = document.body.scrollHeight; 
+        if(oldHeight<600 && newHeight<600)
+        {
+            if(oldHeight==newHeight)
+            {
+                $('.web').show();
+            }
+            else{
+                $('.web').hide();
+            }  
+        }
+    });
+}
+-->
+</script>    
+</body>
+</html>
+
+<script type="text/javascript">
+var man = "";
+if(man!='')
+{
+    $('#'+man).addClass('current');  
+}
+else{
+    $('#all').addClass('current');  
+    $('#ball').addClass('current');  
+}
+//取消操作
+function cancel(id,type)
+{   
+    var geturl = type=='shen' ? './?c=integral&a=cancelcheck&id='+id : './?c=integral&a=cancelback&id='+id
+    $.ajax({
+        type:'GET',
+        url:geturl,
+        success:function(msg)
+        {
+            if(msg=='yes')
+            {
+                $('#tr'+id).remove();
+            }
+            else{
+                alert(msg);
+                $('#tr'+id).remove();
+            }
+        }
+    });
+}
+
+function myConfirm1()   
+{   
+    var tmp=window.confirm("确定要执行此项操作吗？");   
+    if (tmp)   
+    {   
+        return true;   
+    }   
+    else   
+    {   
+        return false;   
+    }     
+}
+//验证搜索
+function checkform()
+{
+    var sname = $('#sname').val();
+    if(sname=='')
+    {
+        return false;
+    }
+    else{
+        var reg = /[\u4E00-\u9FA5\uF900-\uFA2D]/;
+        if (!reg.test(sname) || sname.length>5 || sname.length<2)
+        {
+            alert( "请输入2-5位中文姓名" );
+            return false ;
+        }
+        else {
+            window.location.href="./?c=integral&a=myVerify&sname="+sname;
+        }
+    }
+}
+</script>

@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>悦城|业主积分查询系统|万邦悦城</title>
+
+<meta name="keywords" content="" />
+
+<meta name="description" content="" />
+
+ 
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+<link href="/static/chaxun/index/themes/1007/style/css/style.css" rel="stylesheet" type="text/css" />
+
+
+
+<style>
+.select{
+	padding:9px 9px;
+	border:1px solid #d5d9da;
+	border-radius:5px;
+	margin-right:5px;
+	box-shadow: 0 0 5px #e8e9eb inset;
+	width:150px; /* 400 (parent) - 40 (li margins) -  10 (span paddings) - 20 (input paddings) - 2 (input borders) */
+	font-size:1em;
+	outline:0; /* remove webkit focus styles */
+}
+
+.neibogg {
+	padding-top: 20px;
+	padding-right: 15px;
+	padding-bottom: 100px;
+	padding-left: 15px;
+	color: #FFF;
+}
+.neibogg a{
+	color: #ffffff;
+	
+}
+    .boxxaa {
+	width: 900px;
+}
+@media screen and (max-width: 800px) { 
+.boxxaa {
+	width: 320px;
+}
+.neibogg {
+	padding-top: 20px;
+	padding-right: 1px;
+	padding-bottom: 10px;
+	padding-left: 1px;
+	color: #FFF;
+}
+
+.input {
+	padding: 10px;
+	border: 1px solid #d5d9da;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #e8e9eb inset;
+	width: 300px; /* 400 (parent) - 40 (li margins) -  10 (span paddings) - 20 (input paddings) - 2 (input borders) */
+	font-size: 1em;
+	outline: 0; /* remove webkit focus styles */
+	margin-bottom: 5px;
+}
+.logobox img{ width:280px;}
+}
+
+
+</style>
+</head>
+<body class="custom-background">
+<section class="canvas-wrap">
+<div class="canvas-content">
+<div class="snow-container"></div>
+<div class="table boxxaa">
+<div class="logobox"><h1><center><img src="/static/chaxun/index/editor/attached/image/20161118/20161118215028_30135.png"/></center></h1></div>
+<table align="center" valign="center" border="0" cellspacing="1" cellpadding="3">
+<script type = "text/javascript" >
+ 
+
+function CheckSearchForm() {
+    if (document.getElementById("searchform").keyword.value == "") {
+        alert("请选择查询条件或输入查询内容");
+        return false
+    }
+    return true
+} </script>
+
+<form name="searchform" id="searchform" method="get" action="{:url('gr')}" onSubmit="return CheckSearchForm();">
+       <input type="hidden" name="act" id="act" value="query">
+    <tr>
+     <td align="center"> 
+ 
+  <select name="louhao" class="select">
+         <option value="#">--选择楼号--</option>
+          <option value="01">1号楼</option>
+         
+          <option value="02">2号楼</option>
+		  <option value="03">3号楼</option>
+		  <option value="05">5号楼</option>
+	      <option value="06">6号楼</option>
+          
+        </select>
+		<select name="danyuan" class="select">
+          <option value="#">--选择单元--</option>
+          <option value="1">1单元</option>
+          <option value="2">2单元</option>
+		  <option value="3">3单元</option>
+	      <option value="4">4单元</option>
+          
+        </select>
+		<select name="menpai" class="select">
+          <option value="#">--选择门牌--</option>
+          <option value="0101">101门</option>
+          <option value="0102">102门</option>
+		  <option value="0201">201门</option>
+		  <option value="0202">202门</option>
+		  <option value="0301">301门</option>
+		  <option value="0302">302门</option>
+		  <option value="0401">401门</option>
+		  <option value="0402">402门</option>
+		  <option value="0501">501门</option>
+		  <option value="0502">502门</option>
+		  <option value="0601">601门</option>
+		  <option value="0602">602门</option>
+		  <option value="0701">701门</option>
+		  <option value="0702">702门</option>
+		  <option value="0801">801门</option>
+		  <option value="0802">802门</option>
+		  <option value="0901">901门</option>
+		  <option value="0902">902门</option>
+		  <option value="1001">1001门</option>
+		  <option value="1002">1002门</option>
+		  <option value="1101">1101门</option>
+		  <option value="1102">1102门</option>
+          
+        </select>
+		<select name="jiashu" class="select">
+          <option value="#">--选择家属--</option>
+          <option value="01">爸爸</option>
+          <option value="02">妈妈</option>
+		  <option value="03">孩子</option>
+		  <option value="06">爷爷</option>
+		  <option value="07">奶奶</option>
+		  <option value="08">外公</option>
+		  <option value="09">外婆</option>
+		  
+          
+        </select>
+      
+<!--<input name="keyword"  id="keyword" type="text" class="input" placeholder="请输入查询信息">
+-->
+         
+<input type="submit" name="submit" class="submit" value="查 询"> 
+<!--&nbsp;<input name="button" type="button" id="submit" value="申请" class="submit" onClick="window.open('AddInfo.php')">
+-->
+ <INPUT value='' type='hidden' name='search' id='search'>
+
+   <INPUT value='0' type='hidden' name='yzm_status' id='yzm_status'>
+   
+<div class="neibogg"><div class="contact">  
+
+ 
+
+    <div id="tgs_result_str">请选择您的楼号、单元、门牌号，家庭成员。然后点击“查询”按钮<br/>
+	即可查询您单个家庭成员的积分情况及参与活动详情。
+ <!--<p style="text-align:center"><a href="fw.php">防伪查询</a>     <a href="mblogin/" target="_blank">代理登录</a></p></div>
+-->
+ 
+
+</div></div>
+
+     
+        </td>
+    </tr>
+</form>
+
+</table>
+
+
+<table align="center" valign="center"  border="0" cellspacing="1" cellpadding="3">
+<script type = "text/javascript" >
+ 
+
+function CheckSearchForm() {
+    if (document.getElementById("searchform").keyword.value == "") {
+        alert("请选择查询条件或输入查询内容");
+        return false
+    }
+    return true
+} </script>
+
+<form name="searchform2" id="searchform" method="get" action="{:url('jt')}" onSubmit="return CheckSearchForm();">
+       <input type="hidden" name="act" id="act" value="query">
+    <tr>
+     <td align="center"> 
+ 
+  <select name="louhao" class="select">
+         <option value="#">--选择楼号--</option>
+          <option value="01">1号楼</option>
+         
+          <option value="02">2号楼</option>
+		  <option value="03">3号楼</option>
+		  <option value="05">5号楼</option>
+          <option value="06">6号楼</option>
+        </select>
+		<select name="danyuan" class="select">
+          <option value="#">--选择单元--</option>
+          <option value="1">1单元</option>
+          <option value="2">2单元</option>
+		  <option value="3">3单元</option>
+	      <option value="4">4单元</option>
+          
+        </select>
+		<select name="menpai" class="select">
+          <option value="#">--选择门牌--</option>
+          <option value="0101">101门</option>
+          <option value="0102">102门</option>
+		  <option value="0201">201门</option>
+		  <option value="0202">202门</option>
+		  <option value="0301">301门</option>
+		  <option value="0302">302门</option>
+		  <option value="0401">401门</option>
+		  <option value="0402">402门</option>
+		  <option value="0501">501门</option>
+		  <option value="0502">502门</option>
+		  <option value="0601">601门</option>
+		  <option value="0602">602门</option>
+		  <option value="0701">701门</option>
+		  <option value="0702">702门</option>
+		  <option value="0801">801门</option>
+		  <option value="0802">802门</option>
+		  <option value="0901">901门</option>
+		  <option value="0902">902门</option>
+		  <option value="1001">1001门</option>
+		  <option value="1002">1002门</option>
+		  <option value="1101">1101门</option>
+		  <option value="1102">1102门</option>
+          
+        </select>
+      
+<!--<input name="keyword"  id="keyword" type="text" class="input" placeholder="请输入查询信息">
+-->
+         
+<input type="submit" name="submit" class="submit" value="查 询"> 
+<!--&nbsp;<input name="button" type="button" id="submit" value="申请" class="submit" onClick="window.open('AddInfo.php')">
+-->
+ <INPUT value='' type='hidden' name='search' id='search'>
+
+   <INPUT value='0' type='hidden' name='yzm_status' id='yzm_status'>
+   
+<div class="neibogg"><div class="contact">  
+
+ 
+
+    <div id="tgs_result_str">请选择您的楼号、单元、门牌号，然后点击“查询”按钮<br />
+	即可查询您整个家庭成员的积分情况及参与活动详情。
+ <!--<p style="text-align:center"><a href="fw.php">防伪查询</a>     <a href="mblogin/" target="_blank">代理登录</a></p></div>
+-->
+ 
+
+</div></div>
+
+     
+        </td>
+    </tr>
+</form>
+</table>
+
+
+
+
+
+<div class="foot">Copyright  2017 版权所有</br> 万邦地产●悦城</div>
+</div>
+
+
+
+
+</div>
+</div>
+<div id="canvas" class="gradient"></div>
+</section>
+
+
+<script src="/static/chaxun/index/themes/1007/style/js/color.js"></script>
+<script src="/static/chaxun/index/themes/1007/style/js/three.min.js"></script>
+<script src="/static/chaxun/index/themes/1007/style/js/projector.js"></script>
+<script src="/static/chaxun/index/themes/1007/style/js/canvas-renderer.js"></script>
+<script src="/static/chaxun/index/themes/1007/style/js/3d-lines-animation.js"></script>
+<script src="/static/chaxun/index/themes/1007/style/js/jquery.min.js" type="text/javascript"></script>
+<script>window.jQuery || document.write('<script src="index/themes/1007/style/js/jquery-2.1.1.min.js"><\/script>')</script>
+
+</body>
+</html>

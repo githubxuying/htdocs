@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+    <title>分享家管理系统</title>
+    <link rel="stylesheet" href="/static/share/css/login_q.css">
+    <script type="text/javascript" src="/static/share/js/jquery-1.7.2.min.js"></script>
+</head>
+
+<body>
+    <!-- login div -->
+    <div class="header_new">
+        <div class="logo"><img src="/static/share/images/logo.png" alt=""></div>
+    </div>
+    <div class="logo_con">
+        <img class="ll_img" src="/static/share/images/log_l.png" alt="">
+        <div class="lc_form">
+            <form action="{:url('validate_login')}" id="form1" name="form1" onsubmit="return addsubmit()" method="post">
+                <div class="form">
+                    <img class="tile_img" src="/static/share/images/tile_img.png" alt="">
+                    <h4 class="tile">分享家管理系统</h4>
+                    <!-- 账 号 begin -->
+                    <div class="form-groud">
+                        <div class="fgdIn">
+                            <label for="username">账 号</label>
+                            <input type="text" placeholder="请业主输入8位数字，例如：08020302" name="number" id="username"   onfocus="inputFocus()">
+                        </div>
+                        <span class='error'></span>
+                    </div>
+                    <!-- 账 号 end -->
+                    <!-- 密 码 begin -->
+                    <div class="form-groud">
+                        <div class="fgdIn">
+                            <label for="password">密 码</label>
+                            <input type="password" name="password" id="password" onfocus="inputFocus()">
+                        </div>
+                        <span class='error'></span>
+                    </div>
+                    <!-- 密 码 end -->
+                    <!-- 验证码 begin -->
+                    <div class="form-groud form-groud1">
+                        <div class="fgdIn fgdIn1">
+                            <div class="fgIn">
+                                <label for="yzm">验证码</label>
+                                <input type="text" name="code" id="yzm" onfocus="inputFocus()">
+
+                            </div>
+                            <!-- <img class="form_Img" src="szyzm/imggd1.php?'+Math.random()" name="yzm" id="yzm" onclick="this.src='szyzm/imggd1.php?'+Math.random();" height="40"/> -->
+                            <img class="form_Img" src="{:captcha_src()}" name="yzm" id="yzm" onclick="this.src='/kinder.php/captcha.html?'+Math.random();"
+                                height="40" />
+
+                            <!-- <div><img src="{:captcha_src()}" alt="captcha" /></div> -->
+                        </div>
+                        <span class='error'></span>
+                    </div>
+                    <!-- 验证码 end -->
+                    <!-- 记住密码 begin -->
+                    <div class="form-groud3">
+                        <div class="fgIn remember">
+                            <label for="readme">记住密码：</label>
+                            <input type="checkbox" id="readme" >
+                        </div>
+                    </div>
+                    <!-- 记住密码 end -->
+                    <!-- 登录 begin -->
+                    <div class="form-groud form-groud2">
+                        <input class="sub" type="submit" value="登 录" id="Login">
+                    </div>
+                    <!-- 登录 end -->
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- login div -->
+
+    <!--cnzz统计代码-->
+    <div style="display:none">
+        <script src="https://s4.cnzz.com/z_stat.php?id=1260562880&web_id=1260562880" language="JavaScript"></script>
+    </div>
+    <!--cnzz统计代码-->
+
+    <!--禁止查看源代码-->
+    <script>
+        document.oncontextmenu = new Function("return false");
+        document.onselectstart = new Function("return false");
+        event.ctrlKey = new Function("return false;");
+
+//h5 wap 键盘遮挡input 框，解决方案
+function inputFocus(){
+	setTimeout(function(){  
+        window.scrollTo(0,document.body.clientHeight);  
+    }, 500); 
+}
+
+        
+    
+
+    </script>
+
+</body>
+
+</html>
+<script type="text/javascript" src="/static/share/js/login.js"></script>
+
+<script type="text/javascript" src="/static/share/script/cookie.js"></script>

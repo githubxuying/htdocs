@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="zh" class="no-js">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	
+
+	<link rel="stylesheet" href="/static/chaxun/gr/css/reset.css"> <!-- CSS reset -->
+	<link rel="stylesheet" href="/static/chaxun/gr/css/style.css"> <!-- Gem style -->
+	<script src="/static/chaxun/gr/js/modernizr.js"></script> <!-- Modernizr -->
+	
+	
+
+	
+	
+</head>
+<body>
+{volist name="list_jt" id="list_jt" }
+{/volist}
+
+
+ {$temp}
+<section id="cd-table">
+	<header class="cd-table-column">
+		<h2>家庭成员</h2>
+		<ul>
+			{if $temp =="03"}
+			{volist name="list_hz1" id="hz1" } {/volist}
+			{volist name="list_hz2" id="hz2" } {/volist}
+			{volist name="list_hz3" id="hz3" } {/volist}
+			<li>{$hz1.member_name}</li>
+            <li>{$hz2.member_name}</li>
+			<li>{$hz3.member_name}</li>	
+			{else /}
+			{volist name="list_gr" id="user" } {/volist} 
+			 <li>{$user.member_name}</li>
+
+			
+		
+			  {/if}
+		   
+		</ul>
+	</header>
+    
+	<div class="cd-table-container">
+		<div class="cd-table-wrapper">
+
+			<div class="cd-table-column">
+				<h2>会员卡号</h2>
+				<ul>
+			{if $temp =="03"}
+			{volist name="list_hz1" id="hz1" } {/volist}
+			{volist name="list_hz2" id="hz2" } {/volist}
+			{volist name="list_hz3" id="hz3" } {/volist}
+			<li>{$hz1.card_num}</li>
+            <li>{$hz2.card_num}</li>
+			<li>{$hz3.card_num}</li>	
+			{else /}
+			{volist name="list_gr" id="user" } {/volist} 
+			
+             <li>{$user.card_num}</li>
+			
+		
+			  {/if}
+				
+
+
+					
+					
+			
+			</div> <!-- cd-table-column -->
+
+			<div class="cd-table-column">
+				<h2>个人积分</h2>
+				<ul>
+			{if $temp =="03"}
+			{volist name="list_hz1" id="hz1" } {/volist}
+			{volist name="list_hz2" id="hz2" } {/volist}
+			{volist name="list_hz3" id="hz3" } {/volist}
+			<li>{$hz1.integral_total}</li>
+            <li>{$hz2.integral_total}</li>
+			<li>{$hz3.integral_total}</li>	
+			{else /}
+			{volist name="list_gr" id="user" } {/volist} 
+			
+    
+			<li>{$user.integral_total}</li>
+		
+			  {/if}
+					
+				
+				
+				</ul>
+			</div> <!-- cd-table-column -->
+
+			<div class="cd-table-column">
+				<h2>家庭积分</h2>
+				<ul>
+				{if $temp =="03"}
+					<li style="height:126px;line-height:126px;">{$list_jt.integral_total}</li>
+				{else /}
+					<li style="height:42px;line-height:42px;">{$list_jt.integral_total}</li>
+				{/if}
+				</ul>
+			</div> <!-- cd-table-column -->
+
+			<div class="cd-table-column">
+				<h2>查询明细</h2>
+				<ul>
+				{if $temp =="03"}
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$hz1['card_num']))}"><img src="/static/chaxun/gr/img/tab_search.png" style="max-width:23%;"></a></li>
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$hz2['card_num']))}"><img src="/static/chaxun/gr/img/tab_search.png" style="max-width:23%;"></a></li>
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$hz3['card_num']))}"><img src="/static/chaxun/gr/img/tab_search.png" style="max-width:23%;"></a></li>
+				{else /}
+					<li class="cd-search"><a href="{:url('cxxx',array('temp_xx'=>$user['card_num']))}"><img src="/static/chaxun/gr/img/tab_search.png" style="max-width:23%;"></a></li>
+					
+				{/if}
+						  
+						  
+				</ul>
+			</div> <!-- cd-table-column -->
+
+			
+
+		</div> <!-- cd-table-wrapper -->
+	</div> <!-- cd-table-container -->
+ 
+	<em class="cd-scroll-right"></em>
+</section> <!-- cd-table -->
+	
+<!--
+<iframe src="time_.html" frameborder=0 width=500 height=500 marginheight=0 marginwidth=0 scrolling=no  />
+-->
+<iframe name="web" width="100%" frameborder=0 height="600" src="{:url('time_gr')}" id="web" onload="this.height=web.document.body.scrollHeight+500" ></iframe>  
+
+<script src="/static/chaxun/gr/js/jquery.min.js"></script>
+<script src="/static/chaxun/gr/js/main.js"></script> <!-- Gem jQuery -->
+
+</body>
+</html>
